@@ -262,7 +262,7 @@ export default function EditRecordPage() {
           <div
             className="px-4 py-3 d-flex align-items-center justify-content-between"
             style={{
-              background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >
@@ -445,7 +445,7 @@ export default function EditRecordPage() {
           <div
             className="px-4 py-3 d-flex justify-content-between align-items-center"
             style={{
-              background: 'linear-gradient(135deg, #92400e 0%, #b45309 50%, #d97706 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >
@@ -574,7 +574,7 @@ export default function EditRecordPage() {
           <div
             className="px-4 py-3 d-flex justify-content-between align-items-center"
             style={{
-              background: 'linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >

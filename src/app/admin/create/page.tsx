@@ -49,10 +49,10 @@ export default function AddRecordPage() {
   const [name, setName] = useState('');
   const [hsseProfileId, setHsseProfileId] = useState('');
   const [peopleId, setPeopleId] = useState('');
-  const [site, setSite] = useState('Shaqra Wind');
-  const [department, setDepartment] = useState('Construction');
-  const [jobTitle, setJobTitle] = useState('HELPER');
-  const [roleScope, setRoleScope] = useState('Civil');
+  const [site, setSite] = useState('');
+  const [department, setDepartment] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
+  const [roleScope, setRoleScope] = useState('');
   const [peopleType, setPeopleType] = useState('Subcontractor');
   const [joiningDate, setJoiningDate] = useState(new Date().toISOString().split('T')[0]);
   const [photoUrl, setPhotoUrl] = useState('');
@@ -198,7 +198,7 @@ export default function AddRecordPage() {
           <div
             className="px-4 py-3 d-flex align-items-center justify-content-between"
             style={{
-              background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >
@@ -384,7 +384,7 @@ export default function AddRecordPage() {
           <div
             className="px-4 py-3 d-flex justify-content-between align-items-center"
             style={{
-              background: 'linear-gradient(135deg, #92400e 0%, #b45309 50%, #d97706 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >
@@ -513,7 +513,7 @@ export default function AddRecordPage() {
           <div
             className="px-4 py-3 d-flex justify-content-between align-items-center"
             style={{
-              background: 'linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%)',
+              background: 'linear-gradient(135deg, #0f172a, #1e3a8a)',
               color: '#ffffff',
             }}
           >
@@ -580,7 +580,6 @@ export default function AddRecordPage() {
                       className="form-control form-control-sm"
                       value={t.topic}
                       onChange={(e) => handleTrainingChange(idx, 'topic', e.target.value)}
-                      placeholder="e.g. Site HSSE Induction & Emergency Response / Scaffolding Safety"
                     />
                   </div>
                   <div className="col-md-6">
@@ -592,7 +591,6 @@ export default function AddRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'training_site', e.target.value)
                       }
-                      placeholder="e.g. Shaqra Wind Project - On-site Safety Training Center"
                     />
                   </div>
                   <div className="col-md-3">
@@ -648,7 +646,6 @@ export default function AddRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'training_drive', e.target.value)
                       }
-                      placeholder="e.g. TBC Corporate Mandatory / Client Compliance Drive"
                     />
                   </div>
                   <div className="col-md-4">
