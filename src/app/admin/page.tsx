@@ -7,7 +7,6 @@ import {
   Users,
   Award,
   GraduationCap,
-  Building2,
   Plus,
   Search,
   QrCode,
@@ -180,8 +179,8 @@ export default function AllRecordsPage() {
 
       {/* Metrics / Stats Cards */}
       <div className="row g-3 mb-4">
-        {/* Metric 1 */}
-        <div className="col-sm-6 col-xl-3">
+        {/* Metric 1: Total Personnel */}
+        <div className="col-sm-6 col-md-4">
           <div className="tbc-card p-3 d-flex align-items-center justify-content-between">
             <div>
               <span className="text-muted small fw-medium d-block mb-1">Total Personnel</span>
@@ -200,8 +199,8 @@ export default function AllRecordsPage() {
           </div>
         </div>
 
-        {/* Metric 2 */}
-        <div className="col-sm-6 col-xl-3">
+        {/* Metric 2: Total Training Logs */}
+        <div className="col-sm-6 col-md-4">
           <div className="tbc-card p-3 d-flex align-items-center justify-content-between">
             <div>
               <span className="text-muted small fw-medium d-block mb-1">Total Training Logs</span>
@@ -217,8 +216,8 @@ export default function AllRecordsPage() {
           </div>
         </div>
 
-        {/* Metric 3 */}
-        <div className="col-sm-6 col-xl-3">
+        {/* Metric 3: Certificates Issued */}
+        <div className="col-sm-12 col-md-4">
           <div className="tbc-card p-3 d-flex align-items-center justify-content-between">
             <div>
               <span className="text-muted small fw-medium d-block mb-1">Certificates Issued</span>
@@ -230,25 +229,6 @@ export default function AllRecordsPage() {
               style={{ background: '#fffbeb', color: '#d97706' }}
             >
               <Award className="w-6 h-6" />
-            </div>
-          </div>
-        </div>
-
-        {/* Metric 4 */}
-        <div className="col-sm-6 col-xl-3">
-          <div className="tbc-card p-3 d-flex align-items-center justify-content-between">
-            <div>
-              <span className="text-muted small fw-medium d-block mb-1">Project Site</span>
-              <h4 className="fw-bold text-slate-900 mb-0" style={{ fontSize: '1.25rem' }}>
-                Shaqra Wind
-              </h4>
-              <small className="text-muted">Primary Construction Site</small>
-            </div>
-            <div
-              className="p-3 rounded-3"
-              style={{ background: '#ecfdf5', color: '#059669' }}
-            >
-              <Building2 className="w-6 h-6" />
             </div>
           </div>
         </div>
