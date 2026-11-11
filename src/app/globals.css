@@ -33,6 +33,10 @@ body {
   color: #ffffff;
 }
 
+.badge {
+  color: inherit;
+}
+
 /* Modern Header / Navbar */
 .tbc-navbar {
   background: #ffffff;

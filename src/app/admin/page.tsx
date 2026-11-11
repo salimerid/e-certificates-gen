@@ -156,7 +156,7 @@ export default function AllRecordsPage() {
               Personnel &amp; Training Records
             </h3>
             <span className="badge bg-primary-subtle text-primary fw-semibold px-2.5 py-1 rounded-pill small">
-              TBC Active Registry
+              Active Registry
             </span>
           </div>
           <p className="text-muted small mb-0">
@@ -265,7 +265,7 @@ export default function AllRecordsPage() {
               <input
                 type="text"
                 className="form-control border-start-0 ps-1"
-                placeholder="Search by name, TBC Profile ID, people ID, or site..."
+                placeholder="Search by name, Profile ID, people ID, or site..."
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
@@ -303,7 +303,7 @@ export default function AllRecordsPage() {
             <thead>
               <tr>
                 <th>Personnel</th>
-                <th>TBC Profile ID</th>
+                <th>Profile ID</th>
                 <th>Site</th>
                 <th>Job Title &amp; Scope</th>
                 <th>People Type</th>
@@ -316,7 +316,7 @@ export default function AllRecordsPage() {
                 <tr>
                   <td colSpan={7} className="text-center py-5 text-muted">
                     <div className="spinner-border spinner-border-sm text-primary me-2"></div>
-                    Loading TBC personnel registry...
+                    Loading personnel registry...
                   </td>
                 </tr>
               ) : filteredRecords.length === 0 ? (
@@ -336,13 +336,6 @@ export default function AllRecordsPage() {
                         .slice(0, 2)
                         .join('')
                     : 'TB';
-
-                  const typeColor =
-                    r.peopleType === 'Employee'
-                      ? 'bg-blue-50 text-blue-700 ring-1 ring-blue-600/20'
-                      : r.peopleType === 'Subcontractor'
-                      ? 'bg-purple-50 text-purple-700 ring-1 ring-purple-600/20'
-                      : 'bg-amber-50 text-amber-700 ring-1 ring-amber-600/20';
 
                   return (
                     <tr key={r.id}>
@@ -382,9 +375,17 @@ export default function AllRecordsPage() {
                         </div>
                       </td>
 
-                      {/* TBC Profile ID */}
+                      {/* Profile ID */}
                       <td>
-                        <span className="badge bg-slate-100 text-slate-700 border font-mono px-2 py-1">
+                        <span
+                          className="d-inline-flex align-items-center px-2.5 py-1 rounded font-mono fw-semibold border"
+                          style={{
+                            fontSize: '12px',
+                            backgroundColor: '#f1f5f9',
+                            color: '#1e293b',
+                            borderColor: '#cbd5e1',
+                          }}
+                        >
                           {r.hsseProfileId || '—'}
                         </span>
                       </td>
@@ -413,8 +414,28 @@ export default function AllRecordsPage() {
                       {/* People Type */}
                       <td>
                         <span
-                          className={`badge rounded-pill px-2.5 py-1 ${typeColor}`}
-                          style={{ fontSize: '11.5px', fontWeight: '500' }}
+                          className="d-inline-flex align-items-center px-2.5 py-1 rounded-pill fw-semibold border"
+                          style={{
+                            fontSize: '11.5px',
+                            backgroundColor:
+                              r.peopleType === 'Employee'
+                                ? '#eff6ff'
+                                : r.peopleType === 'Subcontractor'
+                                ? '#faf5ff'
+                                : '#fffbeb',
+                            color:
+                              r.peopleType === 'Employee'
+                                ? '#1d4ed8'
+                                : r.peopleType === 'Subcontractor'
+                                ? '#7e22ce'
+                                : '#b45309',
+                            borderColor:
+                              r.peopleType === 'Employee'
+                                ? '#bfdbfe'
+                                : r.peopleType === 'Subcontractor'
+                                ? '#e9d5ff'
+                                : '#fde68a',
+                          }}
                         >
                           {r.peopleType || 'Subcontractor'}
                         </span>
@@ -423,8 +444,13 @@ export default function AllRecordsPage() {
                       {/* Training Count */}
                       <td className="text-center">
                         <span
-                          className="badge rounded-pill px-2.5 py-1 bg-slate-100 text-slate-800 border"
-                          style={{ fontSize: '12px' }}
+                          className="d-inline-flex align-items-center px-2.5 py-1 rounded-pill fw-bold border"
+                          style={{
+                            fontSize: '12px',
+                            backgroundColor: '#f8fafc',
+                            color: '#0f172a',
+                            borderColor: '#cbd5e1',
+                          }}
                         >
                           <GraduationCap className="w-3.5 h-3.5 d-inline me-1 text-primary" />
                           {trainingCount}
@@ -557,7 +583,7 @@ export default function AllRecordsPage() {
                 <div className="mb-2">
                   <h5 className="fw-bold text-slate-900 mb-0">{selectedRecord.name}</h5>
                   <p className="text-muted small mb-0">
-                    TBC Profile: <strong>{selectedRecord.hsseProfileId || 'N/A'}</strong> &nbsp;|&nbsp;
+                    Profile ID: <strong>{selectedRecord.hsseProfileId || 'N/A'}</strong> &nbsp;|&nbsp;
                     Cert #{selectedRecord.certificateNo || '148-2026-EN'}
                   </p>
                 </div>

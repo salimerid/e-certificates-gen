@@ -250,7 +250,7 @@ export default function AddRecordPage() {
               </div>
               <div className="col-md-4">
                 <label className="form-label small fw-semibold text-slate-700">
-                  TBC Profile ID
+                  Profile ID
                 </label>
                 <input
                   type="text"
@@ -556,8 +556,13 @@ export default function AddRecordPage() {
               <div key={idx} className="border-bottom p-3 p-md-4">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <span
-                    className="badge bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono px-2.5 py-1"
-                    style={{ fontSize: '12px' }}
+                    className="d-inline-flex align-items-center px-2.5 py-1 rounded-2 font-mono fw-bold border"
+                    style={{
+                      fontSize: '12px',
+                      backgroundColor: '#ecfdf5',
+                      color: '#065f46',
+                      borderColor: '#a7f3d0',
+                    }}
                   >
                     Training Record #{idx + 1}
                   </span>
@@ -638,7 +643,7 @@ export default function AddRecordPage() {
                     />
                   </div>
                   <div className="col-md-4">
-                    <label className="form-label small text-muted">Training Drive</label>
+                    <label className="form-label small fw-medium text-slate-700">Training Drive</label>
                     <input
                       type="text"
                       className="form-control form-control-sm"
@@ -646,6 +651,7 @@ export default function AddRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'training_drive', e.target.value)
                       }
+                      placeholder="e.g. TBC Mandatory Requirement"
                     />
                   </div>
                   <div className="col-md-4">

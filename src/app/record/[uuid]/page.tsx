@@ -84,7 +84,7 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
               <strong>Name:</strong> {record.name}
             </div>
             <div className="tbc-info-cell">
-              <strong>TBC Profile ID:</strong> {record.hsseProfileId || '—'}
+              <strong>Profile ID:</strong> {record.hsseProfileId || '—'}
             </div>
             <div className="tbc-info-cell">
               <strong>People ID:</strong> {record.peopleId || '—'}
