@@ -64,10 +64,10 @@ export default function AddRecordPage() {
   const [validUntil, setValidUntil] = useState(
     new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   );
-  const [company, setCompany] = useState('TBC CONSTRUCTION');
-  const [courseType, setCourseType] = useState('WELDER 3G 4G');
-  const [trainer, setTrainer] = useState('ZEESHAN KHAN');
-  const [location, setLocation] = useState('JUBAIL');
+  const [company, setCompany] = useState('');
+  const [courseType, setCourseType] = useState('');
+  const [trainer, setTrainer] = useState('');
+  const [location, setLocation] = useState('');
 
   // Dynamic Training Rows
   const [trainings, setTrainings] = useState<TrainingRow[]>([
