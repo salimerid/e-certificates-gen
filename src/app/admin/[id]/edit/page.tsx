@@ -258,13 +258,45 @@ export default function EditRecordPage() {
 
       <form onSubmit={handleSubmit}>
         {/* Card 1: Personal Information */}
-        <div className="tbc-card mb-4 overflow-hidden">
+        <div className="tbc-card mb-4 overflow-hidden border-0 shadow-sm">
           <div
-            className="px-4 py-3 border-bottom d-flex align-items-center gap-2"
-            style={{ background: '#f8fafc' }}
+            className="px-4 py-3 d-flex align-items-center justify-content-between"
+            style={{
+              background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)',
+              color: '#ffffff',
+            }}
           >
-            <User className="w-4 h-4 text-primary" />
-            <h6 className="fw-bold text-slate-800 mb-0">Personal Information</h6>
+            <div className="d-flex align-items-center gap-2.5">
+              <div
+                className="d-flex align-items-center justify-content-center rounded-2"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                <User className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h6 className="fw-bold text-white mb-0" style={{ letterSpacing: '0.2px' }}>
+                  Personal Information
+                </h6>
+                <small style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '11.5px' }}>
+                  Core personnel identity and site assignment details
+                </small>
+              </div>
+            </div>
+            <span
+              className="badge text-white"
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.35)',
+                fontWeight: 500,
+                fontSize: '11px',
+              }}
+            >
+              Section 1 of 3
+            </span>
           </div>
           <div className="p-4">
             <div className="row g-3">
@@ -277,7 +309,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. MD IKRAM HUSSAIN"
+                  placeholder="e.g. MOHAMMAD AL-OTAIBI / MD IKRAM HUSSAIN"
                   required
                 />
               </div>
@@ -290,6 +322,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={hsseProfileId}
                   onChange={(e) => setHsseProfileId(e.target.value)}
+                  placeholder="e.g. TBC-85320"
                 />
               </div>
               <div className="col-md-4">
@@ -301,6 +334,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={peopleId}
                   onChange={(e) => setPeopleId(e.target.value)}
+                  placeholder="e.g. 2621620588 (National ID / Iqama)"
                 />
               </div>
               <div className="col-md-4">
@@ -310,6 +344,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={site}
                   onChange={(e) => setSite(e.target.value)}
+                  placeholder="e.g. Shaqra Wind Power Project"
                 />
               </div>
               <div className="col-md-4">
@@ -319,6 +354,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
+                  placeholder="e.g. Health, Safety & Environment (HSE)"
                 />
               </div>
               <div className="col-md-4">
@@ -328,6 +364,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
+                  placeholder="e.g. HSE Officer / Steel Fixer / Site Engineer"
                 />
               </div>
               <div className="col-md-4">
@@ -337,6 +374,7 @@ export default function EditRecordPage() {
                   className="form-control"
                   value={roleScope}
                   onChange={(e) => setRoleScope(e.target.value)}
+                  placeholder="e.g. Civil Infrastructure / Electrical Works"
                 />
               </div>
               <div className="col-md-4">
@@ -410,20 +448,45 @@ export default function EditRecordPage() {
         </div>
 
         {/* Card 2: Certificate Configuration */}
-        <div className="tbc-card mb-4 overflow-hidden">
+        <div className="tbc-card mb-4 overflow-hidden border-0 shadow-sm">
           <div
-            className="px-4 py-3 border-bottom d-flex justify-content-between align-items-center"
-            style={{ background: '#f8fafc' }}
+            className="px-4 py-3 d-flex justify-content-between align-items-center"
+            style={{
+              background: 'linear-gradient(135deg, #92400e 0%, #b45309 50%, #d97706 100%)',
+              color: '#ffffff',
+            }}
           >
-            <div className="d-flex align-items-center gap-2">
-              <Award className="w-4 h-4 text-amber-500" />
-              <h6 className="fw-bold text-slate-800 mb-0">Certificate &amp; ID Card Configuration</h6>
+            <div className="d-flex align-items-center gap-2.5">
+              <div
+                className="d-flex align-items-center justify-content-center rounded-2"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                <Award className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h6 className="fw-bold text-white mb-0" style={{ letterSpacing: '0.2px' }}>
+                  Certificate &amp; ID Card Configuration
+                </h6>
+                <small style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '11.5px' }}>
+                  Official 2-page landscape certificate parameters &amp; verification codes
+                </small>
+              </div>
             </div>
             <button
               type="button"
               onClick={handleAutoGenerateCertNo}
-              className="btn btn-sm btn-outline-primary d-flex align-items-center gap-1.5"
-              style={{ borderRadius: '6px' }}
+              className="btn btn-sm text-white d-flex align-items-center gap-1.5 shadow-sm"
+              style={{
+                borderRadius: '7px',
+                background: 'rgba(255, 255, 255, 0.22)',
+                border: '1px solid rgba(255, 255, 255, 0.4)',
+                fontSize: '12.5px',
+                fontWeight: 500,
+              }}
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Regenerate Numbers</span>
@@ -438,6 +501,7 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={certificateNo}
                   onChange={(e) => setCertificateNo(e.target.value)}
+                  placeholder="e.g. 148-2026-090235-EN"
                 />
               </div>
               <div className="col-md-3">
@@ -447,6 +511,7 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={refNo}
                   onChange={(e) => setRefNo(e.target.value)}
+                  placeholder="e.g. JUB.IVS.26.08.50021"
                 />
               </div>
               <div className="col-md-3">
@@ -474,6 +539,7 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
+                  placeholder="e.g. TBC Construction Co. / Subcontractor"
                 />
               </div>
               <div className="col-md-3">
@@ -483,6 +549,7 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={courseType}
                   onChange={(e) => setCourseType(e.target.value)}
+                  placeholder="e.g. WELDER 3G 4G / Working at Height"
                 />
               </div>
               <div className="col-md-3">
@@ -492,6 +559,7 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={trainer}
                   onChange={(e) => setTrainer(e.target.value)}
+                  placeholder="e.g. Eng. Zeeshan Khan (Lead Instructor)"
                 />
               </div>
               <div className="col-md-3">
@@ -501,38 +569,65 @@ export default function EditRecordPage() {
                   className="form-control form-control-sm"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
+                  placeholder="e.g. Jubail Industrial City Campus"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Card 3: Training Modules */}
-        <div className="tbc-card mb-4 overflow-hidden">
+        {/* Card 3: Training Records */}
+        <div className="tbc-card mb-4 overflow-hidden border-0 shadow-sm">
           <div
-            className="px-4 py-3 border-bottom d-flex justify-content-between align-items-center"
-            style={{ background: '#f8fafc' }}
+            className="px-4 py-3 d-flex justify-content-between align-items-center"
+            style={{
+              background: 'linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%)',
+              color: '#ffffff',
+            }}
           >
-            <div className="d-flex align-items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-emerald-600" />
-              <h6 className="fw-bold text-slate-800 mb-0">Training Modules &amp; Records</h6>
+            <div className="d-flex align-items-center gap-2.5">
+              <div
+                className="d-flex align-items-center justify-content-center rounded-2"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                <GraduationCap className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h6 className="fw-bold text-white mb-0" style={{ letterSpacing: '0.2px' }}>
+                  Training Records
+                </h6>
+                <small style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '11.5px' }}>
+                  Safety inductions, technical courses, and competency certifications
+                </small>
+              </div>
             </div>
             <button
               type="button"
-              className="btn btn-sm btn-outline-dark d-flex align-items-center gap-1.5"
-              style={{ borderRadius: '6px' }}
+              className="btn btn-sm btn-light fw-semibold text-emerald-900 d-flex align-items-center gap-1.5 shadow-sm"
+              style={{
+                borderRadius: '7px',
+                fontSize: '12.5px',
+                border: '1px solid rgba(255, 255, 255, 0.8)',
+              }}
               onClick={handleAddTraining}
             >
-              <Plus className="w-3.5 h-3.5" />
-              <span>Add Module</span>
+              <Plus className="w-3.5 h-3.5 text-emerald-700" />
+              <span>Add Training</span>
             </button>
           </div>
           <div className="p-0">
             {trainings.map((t, idx) => (
               <div key={idx} className="border-bottom p-3 p-md-4">
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span className="badge bg-slate-200 text-slate-800 font-mono">
-                    Module #{idx + 1}
+                  <span
+                    className="badge bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono px-2.5 py-1"
+                    style={{ fontSize: '12px' }}
+                  >
+                    Training Record #{idx + 1}
                   </span>
                   {trainings.length > 1 && (
                     <button
@@ -553,6 +648,7 @@ export default function EditRecordPage() {
                       className="form-control form-control-sm"
                       value={t.topic}
                       onChange={(e) => handleTrainingChange(idx, 'topic', e.target.value)}
+                      placeholder="e.g. Site HSSE Induction & Emergency Response / Scaffolding Safety"
                     />
                   </div>
                   <div className="col-md-6">
@@ -564,6 +660,7 @@ export default function EditRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'training_site', e.target.value)
                       }
+                      placeholder="e.g. Shaqra Wind Project - On-site Safety Training Center"
                     />
                   </div>
                   <div className="col-md-3">
@@ -595,6 +692,7 @@ export default function EditRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'duration_hours', e.target.value)
                       }
+                      placeholder="e.g. 4.00 (Total credit hours)"
                     />
                   </div>
                   <div className="col-md-3">
@@ -606,6 +704,7 @@ export default function EditRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'assessment_score', e.target.value)
                       }
+                      placeholder="e.g. 95.00% (or 'Passed' / '—')"
                     />
                   </div>
                   <div className="col-md-4">
@@ -617,6 +716,7 @@ export default function EditRecordPage() {
                       onChange={(e) =>
                         handleTrainingChange(idx, 'training_drive', e.target.value)
                       }
+                      placeholder="e.g. TBC Corporate Mandatory / Client Compliance Drive"
                     />
                   </div>
                   <div className="col-md-4">

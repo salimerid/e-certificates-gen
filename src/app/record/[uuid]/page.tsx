@@ -119,10 +119,10 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h5 className="fw-bold text-slate-900 mb-0 d-flex align-items-center gap-2">
               <Award className="w-5 h-5 text-amber-500" />
-              <span>Completed Training Modules &amp; Safety Courses</span>
+              <span>Completed Training Records &amp; Safety Courses</span>
             </h5>
             <span className="badge bg-slate-100 text-slate-700 border small">
-              {record.trainings?.length || 0} Modules Registered
+              {record.trainings?.length || 0} Training Records Registered
             </span>
           </div>
 
