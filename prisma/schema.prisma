@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PersonRecord {
+  id            Int              @id @default(autoincrement())
+  uuid          String           @unique @default(uuid())
+  name          String
+  hsseProfileId String?
+  peopleId      String?
+  site          String?
+  department    String?
+  jobTitle      String?
+  roleScope     String?
+  peopleType    String?
+  joiningDate   DateTime?
+  photoUrl      String?          @db.LongText
+
+  // Certificate fields for PDF generation
+  certificateNo String?
+  refNo         String?
+  issuedOn      DateTime?
+  validUntil    DateTime?
+  company       String?
+  issuanceNo    String?          @default("1")
+  courseType    String?
+  model         String?          @default("N/A")
+  trainer       String?
+  location      String?
+
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  trainings     TrainingRecord[]
+
+  @@map("person_records")
+}
+
+model TrainingRecord {
+  id                  Int          @id @default(autoincrement())
+  personId            Int
+  person              PersonRecord @relation(fields: [personId], references: [id], onDelete: Cascade)
+  topic               String
+  trainingSite        String?
+  fromDate            DateTime?
+  toDate              DateTime?
+  durationHours       String?
+  assessmentScore     String?
+  trainingDrive       String?
+  methodology         String?
+  recertificationDate DateTime?
+
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  @@map("training_records")
+}
