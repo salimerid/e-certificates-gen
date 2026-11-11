@@ -2,15 +2,15 @@
 
 import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Mail, Lock, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/admin';
 
-  const [email, setEmail] = useState('admin@hsse.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -104,7 +104,7 @@ function LoginForm() {
               <input
                 type="email"
                 className="form-control bg-slate-50 border-start-0 ps-1"
-                placeholder="admin@hsse.com"
+                placeholder="name@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{ fontSize: '14px' }}
@@ -156,19 +156,6 @@ function LoginForm() {
             )}
           </button>
         </form>
-
-        <div className="mt-4 p-3 bg-slate-50 rounded-3 text-center small text-muted border">
-          <div className="d-flex align-items-center justify-content-center gap-1.5 fw-semibold text-slate-700 mb-1">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Default Administrator Credentials</span>
-          </div>
-          <div>
-            Email: <code className="text-primary fw-semibold">admin@hsse.com</code>
-          </div>
-          <div>
-            Password: <code className="text-primary fw-semibold">admin123</code>
-          </div>
-        </div>
       </div>
     </div>
   );
