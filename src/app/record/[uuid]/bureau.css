@@ -1,0 +1,303 @@
+/* Bureau Veritas Authentication Portal Styles */
+.bureau-wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif !important;
+  min-height: 100vh;
+  background-image: url("/bureau/background_industry.jpg");
+  background-color: #cccccc;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 100px;
+  position: relative;
+  color: #000;
+}
+
+.bureau-wrapper * {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.bureau-header {
+  background: #00049e;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  align-items: center;
+}
+
+.bureau-header img {
+  width: 70px;
+  height: auto;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.bureau-header .qrc-app-logo-text {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.bureau-header .qrc-app-logo-text b {
+  font-weight: bold;
+}
+
+.bureau-header .qrc-app-logo-text span {
+  font-weight: normal;
+}
+
+.bureau-header p {
+  margin: 2px 0 !important;
+  font-size: 13px !important;
+  color: #fff !important;
+  line-height: 1.35;
+}
+
+#main_container {
+  padding: 20px 0 40px 0;
+  position: relative;
+  min-height: calc(100vh - 120px);
+}
+
+#row_2 {
+  width: 630px;
+  margin: 0 auto;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+#row_2_1 {
+  background-image: url("/bureau/content_industry_top.png");
+  background-color: #cccccc;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#row_2_1 img {
+  width: 40px;
+  height: auto;
+}
+
+#row_2_2 {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px 65px 20px;
+  min-height: 500px;
+  position: relative;
+}
+
+#row_2_2 .bureau-field {
+  display: grid;
+  grid-template-columns: 210px auto;
+  align-items: start;
+  margin-bottom: 5px;
+}
+
+#row_2_2 .bureau-field .key {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+
+#row_2_2 .bureau-field .value {
+  font-size: 13px;
+  color: #000;
+  word-break: break-word;
+}
+
+#row_2_2 .bureau-disclaimer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  padding: 20px;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+#row_2_3 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#row_2_3 img {
+  width: 300px;
+  height: auto;
+  display: block;
+}
+
+#bottom_p {
+  position: fixed;
+  bottom: 0px;
+  left: 10px;
+  z-index: 999;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}
+
+#bottom_p h4 {
+  text-align: center;
+  font-weight: normal;
+  padding: 0;
+  margin: 0 0 2px 0;
+  width: 95%;
+  font-size: 14px;
+  color: #000;
+}
+
+#bottom_p a {
+  color: #000 !important;
+  font-weight: bold;
+  text-decoration: none !important;
+  font-size: 14px;
+}
+
+#bottom_pdf_action {
+  position: fixed;
+  bottom: 12px;
+  right: 15px;
+  z-index: 999;
+}
+
+#bottom_pdf_action a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #00049e !important;
+  font-weight: bold;
+  text-decoration: none !important;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 4, 158, 0.15);
+  transition: all 0.2s ease;
+}
+
+#bottom_pdf_action a:hover {
+  background: #00049e;
+  color: #fff !important;
+}
+
+/* Responsive queries */
+@media only screen and (max-width: 1000px) {
+  #row_2 {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .bureau-wrapper {
+    background-position: 100% top;
+    padding-top: 70px;
+  }
+  .bureau-header {
+    height: 80px;
+    padding: 8px 15px;
+  }
+  .bureau-header img {
+    width: 50px;
+    margin-right: 15px;
+  }
+  .bureau-header .qrc-app-logo-text {
+    font-size: 16px;
+  }
+  .bureau-header p {
+    font-size: 11px !important;
+  }
+  #row_2_3 img {
+    width: 180px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #row_2 {
+    width: 92%;
+  }
+  #row_2_2 {
+    padding: 15px 15px 75px 15px;
+    min-height: 520px;
+  }
+  #row_2_2 .bureau-field {
+    grid-template-columns: 1fr;
+    margin-bottom: 6px;
+  }
+  #row_2_2 .bureau-field .key {
+    font-size: 13px;
+    margin-bottom: 1px;
+  }
+  #row_2_2 .bureau-field .value {
+    font-size: 13px;
+  }
+  #row_2_2 .bureau-disclaimer {
+    font-size: 11px;
+    padding: 15px;
+  }
+  #bottom_p {
+    position: static;
+    margin: 20px auto 10px auto;
+    text-align: center;
+  }
+  #bottom_pdf_action {
+    position: static;
+    margin: 10px auto 20px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .bureau-wrapper {
+    background-position: 100% top;
+    padding-top: 60px;
+  }
+  .bureau-header {
+    height: 90px;
+    padding: 8px 12px;
+  }
+  .bureau-header img {
+    width: 45px;
+    margin-right: 10px;
+  }
+  .bureau-header .qrc-app-logo-text {
+    font-size: 14px;
+  }
+  .bureau-header p {
+    font-size: 10.5px !important;
+  }
+  #main_container {
+    margin-top: 10px;
+  }
+  #row_2_1 {
+    margin-top: 10px;
+    height: 42px;
+  }
+  #row_2_1 img {
+    width: 32px;
+  }
+  #row_2_3 img {
+    width: 180px;
+  }
+}
