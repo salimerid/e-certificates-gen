@@ -4,9 +4,11 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const hasDbUrl = !!process.env.DATABASE_URL;
-  const dbUrlMasked = process.env.DATABASE_URL
-    ? process.env.DATABASE_URL.replace(/:([^:@]{3})[^:@]*@/, ':***@')
+  const rawUrl = process.env.DATABASE_URL;
+  const cleanUrl = rawUrl ? rawUrl.replace(/[\r\n\t ]+/g, '') : undefined;
+  const hasDbUrl = !!cleanUrl;
+  const dbUrlMasked = cleanUrl
+    ? cleanUrl.replace(/:([^:@]{3})[^:@]*@/, ':***@')
     : 'NOT_SET';
   const hasJwtSecret = !!process.env.JWT_SECRET;
 
