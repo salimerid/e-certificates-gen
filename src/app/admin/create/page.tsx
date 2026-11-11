@@ -245,7 +245,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. MOHAMMAD AL-OTAIBI / MD IKRAM HUSSAIN"
                   required
                 />
               </div>
@@ -258,7 +257,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={hsseProfileId}
                   onChange={(e) => setHsseProfileId(e.target.value)}
-                  placeholder="e.g. TBC-85320"
                 />
               </div>
               <div className="col-md-4">
@@ -270,7 +268,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={peopleId}
                   onChange={(e) => setPeopleId(e.target.value)}
-                  placeholder="e.g. 2621620588 (National ID / Iqama)"
                 />
               </div>
               <div className="col-md-4">
@@ -280,7 +277,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={site}
                   onChange={(e) => setSite(e.target.value)}
-                  placeholder="e.g. Shaqra Wind Power Project"
                 />
               </div>
               <div className="col-md-4">
@@ -290,7 +286,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  placeholder="e.g. Health, Safety & Environment (HSE)"
                 />
               </div>
               <div className="col-md-4">
@@ -300,7 +295,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
-                  placeholder="e.g. HSE Officer / Steel Fixer / Site Engineer"
                 />
               </div>
               <div className="col-md-4">
@@ -310,7 +304,6 @@ export default function AddRecordPage() {
                   className="form-control"
                   value={roleScope}
                   onChange={(e) => setRoleScope(e.target.value)}
-                  placeholder="e.g. Civil Infrastructure / Electrical Works"
                 />
               </div>
               <div className="col-md-4">
