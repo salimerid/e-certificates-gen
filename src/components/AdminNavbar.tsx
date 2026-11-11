@@ -32,7 +32,7 @@ export default function AdminNavbar() {
       {/* Center Tag / Portal indicator */}
       <div className="d-none d-lg-flex align-items-center gap-2 px-3 py-1 bg-slate-100 rounded-pill text-xs font-semibold text-slate-700">
         <ShieldCheck className="w-4 h-4 text-emerald-600" />
-        <span>TBC Personnel &amp; Certificate Directorate</span>
+        <span>Personnel &amp; Certificate Directorate</span>
       </div>
 
       {/* Right User & Actions */}
@@ -45,7 +45,7 @@ export default function AdminNavbar() {
             <User className="w-4 h-4 text-slate-200" />
           </div>
           <div className="d-flex flex-column text-start" style={{ lineHeight: '1.2' }}>
-            <span className="fw-semibold text-dark small">TBC Administrator</span>
+            <span className="fw-semibold text-dark small">Administrator</span>
             <span className="text-muted" style={{ fontSize: '11px' }}>admin@tbc.com</span>
           </div>
         </div>

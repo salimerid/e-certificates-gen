@@ -61,7 +61,7 @@ export default function AdminSidebar() {
         <div className="p-3 bg-light rounded-3 text-start small border">
           <div className="d-flex align-items-center gap-1.5 fw-semibold text-dark mb-1">
             <HelpCircle className="w-4 h-4 text-primary" />
-            <span>TBC Helpdesk</span>
+            <span>Helpdesk</span>
           </div>
           <p className="text-muted mb-0" style={{ fontSize: '11.5px', lineHeight: '1.4' }}>
             Instant QR validation active. Any scanned certificate links directly to its public verified log.
