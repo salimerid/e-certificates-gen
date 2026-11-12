@@ -37,17 +37,15 @@ export async function generateCertificatePdf(
 ): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
 
-  const helvetica = await doc.embedFont(StandardFonts.Helvetica);
   const helveticaBold = await doc.embedFont(StandardFonts.HelveticaBold);
 
   const PAGE_WIDTH = 755.25;
   const PAGE_HEIGHT = 475.5;
 
-  // Colors
-  const black = rgb(0.08, 0.08, 0.08);
-  const darkBlue = rgb(0.12, 0.25, 0.58); // #1e4094
-  const redText = rgb(0.85, 0.1, 0.1);
-  const darkGray = rgb(0.25, 0.25, 0.25);
+  // Exact colors matching generate-certificate.pdf
+  const black = rgb(0, 0, 0);
+  const royalBlue = rgb(0.18, 0.28, 0.96);
+  const redColor = rgb(0.86, 0.1, 0.1);
 
   // Load static assets
   const publicDir = path.join(process.cwd(), 'public');
@@ -63,10 +61,15 @@ export async function generateCertificatePdf(
   }
 
   try {
-    const watermarkBytes = fs.readFileSync(path.join(publicDir, 'images/bv-watermark.png'));
-    watermarkImg = await doc.embedPng(watermarkBytes);
+    const wmPath = path.join(publicDir, 'images/bv-seal-watermark.png');
+    if (fs.existsSync(wmPath)) {
+      const wmBytes = fs.readFileSync(wmPath);
+      watermarkImg = await doc.embedPng(wmBytes);
+    } else if (logoImg) {
+      watermarkImg = logoImg;
+    }
   } catch (e) {
-    console.warn('Could not load bv-watermark.png:', e);
+    console.warn('Could not load watermark:', e);
   }
 
   // Handle Photo
@@ -99,166 +102,169 @@ export async function generateCertificatePdf(
   // ==========================================
   const page1 = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
-  // Watermark in center background
+  // Watermark (circular seal in center background)
   if (watermarkImg) {
-    const wmWidth = 240;
-    const wmHeight = 320;
     page1.drawImage(watermarkImg, {
-      x: (PAGE_WIDTH - wmWidth) / 2 + 30,
-      y: (PAGE_HEIGHT - wmHeight) / 2 - 20,
-      width: wmWidth,
-      height: wmHeight,
-      opacity: 0.16,
+      x: 210,
+      y: 193,
+      width: 320,
+      height: 262.5,
+      opacity: 0.45,
     });
   }
 
-  // BV Logo top left
+  // BV Logo top left (sits directly on top of divider line y=297)
   if (logoImg) {
     page1.drawImage(logoImg, {
-      x: 32,
-      y: PAGE_HEIGHT - 170,
-      width: 110,
-      height: 145,
+      x: 20,
+      y: 298.5,
+      width: 125,
+      height: 172,
     });
   }
 
+  // Person Photo top right (sits directly on top of divider line y=297)
+  if (avatarImg) {
+    page1.drawImage(avatarImg, {
+      x: 582,
+      y: 298.5,
+      width: 156,
+      height: 170,
+    });
+  }
+
+  // Divider Line 1 (top): y=297
+  page1.drawLine({
+    start: { x: 0, y: 297 },
+    end: { x: PAGE_WIDTH, y: 297 },
+    thickness: 3.5,
+    color: black,
+  });
+
+  // Divider Line 2 (footer top): y=100.5
+  page1.drawLine({
+    start: { x: 0, y: 100.5 },
+    end: { x: PAGE_WIDTH, y: 100.5 },
+    thickness: 4.5,
+    color: black,
+  });
+
+  // Divider Line 3 (footer middle): y=49.5
+  page1.drawLine({
+    start: { x: 0, y: 49.5 },
+    end: { x: PAGE_WIDTH, y: 49.5 },
+    thickness: 2.5,
+    color: black,
+  });
+
   // Header Details (Beside BV Logo)
-  const headerX = 165;
-  let topY = PAGE_HEIGHT - 48;
+  const headerX = 163.5;
+  const certNo = data.certificateNo || '148-2026-090235-EN';
+  const refNo = data.refNo || 'JUB.IVS.26.08.50021';
+  const issuedDate = formatDate(data.issuedOn);
+  const validUntilDate = formatDate(data.validUntil || '2027-08-08');
 
   // Certificate No
   page1.drawText('Certificate No:', {
     x: headerX,
-    y: topY,
-    size: 20,
+    y: 441.75,
+    size: 19,
     font: helveticaBold,
     color: black,
   });
 
-  const certNo = data.certificateNo || '148-2026-090235-EN';
   page1.drawText(certNo, {
     x: headerX,
-    y: topY - 32,
-    size: 23,
+    y: 408.0,
+    size: 22,
     font: helveticaBold,
-    color: darkBlue,
+    color: royalBlue,
   });
 
   // Ref.#
-  topY -= 62;
-  const refNo = data.refNo || 'JUB.IVS.26.08.50021';
   page1.drawText(`Ref.#  ${refNo}`, {
     x: headerX,
-    y: topY,
+    y: 373.5,
     size: 19,
     font: helveticaBold,
     color: black,
   });
 
   // Issued On
-  topY -= 28;
-  page1.drawText(`Issued On:   ${formatDate(data.issuedOn)}`, {
+  page1.drawText(`Issued On:   ${issuedDate}`, {
     x: headerX,
-    y: topY,
+    y: 339.0,
     size: 19,
     font: helveticaBold,
     color: black,
   });
 
   // Valid until
-  topY -= 28;
-  page1.drawText(`Valid until:  ${formatDate(data.validUntil || '2027-08-08')}`, {
+  page1.drawText(`Valid until:  ${validUntilDate}`, {
     x: headerX,
-    y: topY,
+    y: 304.5,
     size: 19,
     font: helveticaBold,
     color: black,
   });
 
-  // Person Photo top right
-  if (avatarImg) {
-    const photoWidth = 150;
-    const photoHeight = 175;
-    page1.drawImage(avatarImg, {
-      x: PAGE_WIDTH - photoWidth - 30,
-      y: PAGE_HEIGHT - photoHeight - 20,
-      width: photoWidth,
-      height: photoHeight,
-    });
-  }
-
-  // Thick Horizontal Divider Line
-  const lineY = PAGE_HEIGHT - 195;
-  page1.drawLine({
-    start: { x: 0, y: lineY },
-    end: { x: PAGE_WIDTH, y: lineY },
-    thickness: 4,
-    color: black,
-  });
-
-  // Person Details
-  let bodyY = lineY - 42;
-  const bodyX = 35;
+  // Middle Details (Person info)
+  const bodyX = 36.0;
+  const nameUpper = (data.name || 'ZAHANGIR CHAKLADER').toUpperCase();
+  const idValue = data.peopleId || data.hsseProfileId || '2631733033';
+  const companyValue = (data.company || 'PRIVATE').toUpperCase();
+  const issuanceValue = data.issuanceNo || '1';
 
   // Name
   page1.drawText('Name: ', {
     x: bodyX,
-    y: bodyY,
+    y: 261.0,
     size: 25,
     font: helveticaBold,
     color: black,
   });
-  page1.drawText((data.name || 'MD IKRAM HUSSAIN').toUpperCase(), {
-    x: bodyX + 95,
-    y: bodyY,
-    size: 25,
+
+  let nameSize = 25;
+  while (helveticaBold.widthOfTextAtSize(nameUpper, nameSize) > 590 && nameSize > 16) {
+    nameSize -= 0.5;
+  }
+
+  page1.drawText(nameUpper, {
+    x: bodyX + 90,
+    y: 261.0,
+    size: nameSize,
     font: helveticaBold,
-    color: darkBlue,
+    color: royalBlue,
   });
 
   // ID No
-  bodyY -= 42;
-  const idValue = data.peopleId || data.hsseProfileId || '2631733033';
   page1.drawText(`ID No:  ${idValue}`, {
     x: bodyX,
-    y: bodyY,
+    y: 213.0,
     size: 25,
     font: helveticaBold,
     color: black,
   });
 
   // Company
-  bodyY -= 42;
-  const companyValue = data.company || 'TBC CONSTRUCTION';
-  page1.drawText(`Company:   ${companyValue.toUpperCase()}`, {
+  page1.drawText(`Company:   ${companyValue}`, {
     x: bodyX,
-    y: bodyY,
+    y: 164.25,
     size: 25,
     font: helveticaBold,
     color: black,
   });
 
   // Issuance No
-  bodyY -= 36;
-  const issuanceValue = data.issuanceNo || '1';
   page1.drawText(`Issuance No.:  ${issuanceValue}`, {
     x: bodyX,
-    y: bodyY,
-    size: 21,
+    y: 124.5,
+    size: 23,
     font: helveticaBold,
     color: black,
   });
 
-  // Bottom Notice Box / Footer
-  const footerLineY = 82;
-  page1.drawLine({
-    start: { x: 0, y: footerLineY },
-    end: { x: PAGE_WIDTH, y: footerLineY },
-    thickness: 3.5,
-    color: black,
-  });
-
-  // Footer text
+  // Footer Section
   const noticeLine1 =
     'This certifies that the above mentioned person has successfully';
   const noticeLine2 =
@@ -268,33 +274,33 @@ export async function generateCertificatePdf(
   const emailText = 'bv.jubail.admin@bureauveritas.com';
 
   page1.drawText(noticeLine1, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 16)) / 2,
-    y: footerLineY - 20,
-    size: 16,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 15.5)) / 2,
+    y: 78.0,
+    size: 15.5,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(noticeLine2, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 16)) / 2,
-    y: footerLineY - 38,
-    size: 16,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 15.5)) / 2,
+    y: 57.75,
+    size: 15.5,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(enquiriesText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 14.5)) / 2,
-    y: footerLineY - 56,
-    size: 14.5,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 14)) / 2,
+    y: 30.0,
+    size: 14,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(emailText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 14.5)) / 2,
-    y: footerLineY - 73,
-    size: 14.5,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 14)) / 2,
+    y: 11.0,
+    size: 14,
     font: helveticaBold,
     color: black,
   });
@@ -305,87 +311,80 @@ export async function generateCertificatePdf(
   // ==========================================
   const page2 = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
-  // Target URL that QR Code opens (Public details page without login)
+  // Target URL that QR Code opens (Public verification page)
   const redirectUrl = `${baseUrl.replace(/\/$/, '')}/record/${data.uuid}`;
 
   // Generate QR Code as DataURL / Buffer
   const qrPngBuffer = await QRCode.toBuffer(redirectUrl, {
     errorCorrectionLevel: 'H',
     margin: 1,
-    width: 600,
+    width: 800,
   });
   const qrImage = await doc.embedPng(qrPngBuffer);
 
   // Draw QR code on left side
-  const qrSize = 310;
   page2.drawImage(qrImage, {
-    x: 45,
-    y: PAGE_HEIGHT - qrSize - 40,
-    width: qrSize,
-    height: qrSize,
+    x: 39.0,
+    y: 103.5,
+    width: 315.0,
+    height: 315.0,
   });
 
   // Right side Details
-  const rightX = 390;
-  let p2Y = PAGE_HEIGHT - 55;
+  const rightX = 393.0;
 
   page2.drawText('CERTIFICATE NO.:', {
     x: rightX,
-    y: p2Y,
-    size: 19,
+    y: 414.0,
+    size: 18,
     font: helveticaBold,
     color: black,
   });
 
-  p2Y -= 30;
   page2.drawText(certNo, {
     x: rightX,
-    y: p2Y,
-    size: 21,
+    y: 390.75,
+    size: 20.5,
     font: helveticaBold,
-    color: darkBlue,
+    color: royalBlue,
   });
 
-  p2Y -= 36;
   const courseType = (data.courseType || 'WELDER 3G 4G').toUpperCase();
   page2.drawText(`TYPE: ${courseType}`, {
     x: rightX,
-    y: p2Y,
-    size: 18,
+    y: 356.25,
+    size: 17,
     font: helveticaBold,
     color: black,
   });
 
-  p2Y -= 26;
   page2.drawText(`MODEL: ${data.model || 'N/A'}`, {
     x: rightX,
-    y: p2Y,
-    size: 18,
+    y: 334.5,
+    size: 17,
     font: helveticaBold,
     color: black,
   });
 
-  p2Y -= 26;
   const trainer = (data.trainer || 'ZEESHAN KHAN').toUpperCase();
   page2.drawText(`TRAINER: ${trainer}`, {
     x: rightX,
-    y: p2Y,
-    size: 18,
+    y: 312.0,
+    size: 17,
     font: helveticaBold,
     color: black,
   });
 
-  p2Y -= 26;
   const loc = (data.location || 'JUBAIL').toUpperCase();
   page2.drawText(`LOCATION. ${loc}`, {
     x: rightX,
-    y: p2Y,
-    size: 18,
+    y: 283.5,
+    size: 17,
     font: helveticaBold,
     color: black,
   });
 
-  // Disclaimer text
+  // Disclaimer text (10 lines matching generate-certificate.pdf)
   const disclaimer = [
     'This card does not release the operator from his duty obligation',
     'with regards to the safehandling, perfomance in operation',
@@ -399,54 +398,53 @@ export async function generateCertificatePdf(
     'SAG lcense is client responsibility.',
   ];
 
-  p2Y -= 32;
+  let disclaimerY = 226.0;
   for (const line of disclaimer) {
     page2.drawText(line, {
       x: rightX,
-      y: p2Y,
-      size: 11.5,
+      y: disclaimerY,
+      size: 11,
       font: helveticaBold,
       color: black,
     });
-    p2Y -= 15.5;
+    disclaimerY -= 15.0;
   }
 
   // Red verification footer
   const verifyPrefix = 'Scan QR code to verify this certificate at ';
-  const verifyUrlText = redirectUrl;
+  const verifyDomain = 'https://e-certificates.bureauveritas.com';
 
-  const p2FooterY = 46;
   page2.drawText(verifyPrefix, {
-    x: 45,
-    y: p2FooterY,
-    size: 15,
+    x: 37.5,
+    y: 51.75,
+    size: 14.5,
     font: helveticaBold,
-    color: redText,
+    color: redColor,
   });
 
-  const prefixWidth = helveticaBold.widthOfTextAtSize(verifyPrefix, 15);
-  page2.drawText(verifyUrlText, {
-    x: 45 + prefixWidth,
-    y: p2FooterY,
-    size: 15,
+  const prefixWidth = helveticaBold.widthOfTextAtSize(verifyPrefix, 14.5);
+  page2.drawText(verifyDomain, {
+    x: 37.5 + prefixWidth,
+    y: 51.75,
+    size: 14.5,
     font: helveticaBold,
-    color: redText,
+    color: redColor,
   });
 
   // Underline red link
-  const urlWidth = helveticaBold.widthOfTextAtSize(verifyUrlText, 15);
+  const domainWidth = helveticaBold.widthOfTextAtSize(verifyDomain, 14.5);
   page2.drawLine({
-    start: { x: 45 + prefixWidth, y: p2FooterY - 2 },
-    end: { x: 45 + prefixWidth + urlWidth, y: p2FooterY - 2 },
+    start: { x: 37.5 + prefixWidth, y: 49.5 },
+    end: { x: 37.5 + prefixWidth + domainWidth, y: 49.5 },
     thickness: 1.2,
-    color: redText,
+    color: redColor,
   });
 
   // Bottom line across page 2
   page2.drawLine({
-    start: { x: 50, y: 18 },
-    end: { x: PAGE_WIDTH - 50, y: 18 },
-    thickness: 2,
+    start: { x: 55, y: 16.5 },
+    end: { x: PAGE_WIDTH - 20, y: 16.5 },
+    thickness: 2.5,
     color: black,
   });
 
