@@ -39,13 +39,15 @@ export async function generateCertificatePdf(
 
   const helveticaBold = await doc.embedFont(StandardFonts.HelveticaBold);
 
-  const PAGE_WIDTH = 755.25;
+  const PAGE_WIDTH = 745.25;
   const PAGE_HEIGHT = 475.5;
 
   // Exact colors matching generate-certificate.pdf
-  const black = rgb(0, 0, 0);
-  const royalBlue = rgb(0.18, 0.28, 0.96);
-  const redColor = rgb(0.86, 0.1, 0.1);
+  const black = rgb(0.00, 0.00, 0.00);
+  const certColor = rgb(0.18, 0.30, 0.64);
+  const bkCertColor = rgb(0.02, 0.04, 0.84);
+  const royalBlue = rgb(0.30, 0.29, 0.62)
+  const redColor = rgb(0.99, 0.09, 0.09);
 
   // Load static assets
   const publicDir = path.join(process.cwd(), 'public');
@@ -54,14 +56,14 @@ export async function generateCertificatePdf(
   let avatarImg: any = null;
 
   try {
-    const logoBytes = fs.readFileSync(path.join(publicDir, 'images/bv-logo.png'));
+    const logoBytes = fs.readFileSync(path.join(publicDir, 'images/bv-logo-g.png'));
     logoImg = await doc.embedPng(logoBytes);
   } catch (e) {
     console.warn('Could not load bv-logo.png:', e);
   }
 
   try {
-    const wmPath = path.join(publicDir, 'images/bv-seal-watermark.png');
+    const wmPath = path.join(publicDir, 'images/bv-logo-g.png');
     if (fs.existsSync(wmPath)) {
       const wmBytes = fs.readFileSync(wmPath);
       watermarkImg = await doc.embedPng(wmBytes);
@@ -105,11 +107,11 @@ export async function generateCertificatePdf(
   // Watermark (circular seal in center background)
   if (watermarkImg) {
     page1.drawImage(watermarkImg, {
-      x: 210,
-      y: 193,
-      width: 320,
-      height: 262.5,
-      opacity: 0.45,
+      x: 160,
+      y: 0,
+      width: 400,
+      height: 480,
+      opacity: 1,
     });
   }
 
@@ -178,7 +180,7 @@ export async function generateCertificatePdf(
     y: 408.0,
     size: 22,
     font: helveticaBold,
-    color: royalBlue,
+    color: certColor,
   });
 
   // Ref.#
@@ -274,33 +276,33 @@ export async function generateCertificatePdf(
   const emailText = 'bv.jubail.admin@bureauveritas.com';
 
   page1.drawText(noticeLine1, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 15.5)) / 2,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 24)) / 2,
     y: 78.0,
-    size: 15.5,
+    size: 24,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(noticeLine2, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 15.5)) / 2,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 24)) / 2,
     y: 57.75,
-    size: 15.5,
+    size: 24,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(enquiriesText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 14)) / 2,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 24)) / 2,
     y: 30.0,
-    size: 14,
+    size: 22,
     font: helveticaBold,
     color: black,
   });
 
   page1.drawText(emailText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 14)) / 2,
+    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 24)) / 2,
     y: 11.0,
-    size: 14,
+    size: 22,
     font: helveticaBold,
     color: black,
   });
@@ -346,7 +348,7 @@ export async function generateCertificatePdf(
     y: 390.75,
     size: 20.5,
     font: helveticaBold,
-    color: royalBlue,
+    color: bkCertColor,
   });
 
   const courseType = (data.courseType || 'WELDER 3G 4G').toUpperCase();
@@ -386,16 +388,17 @@ export async function generateCertificatePdf(
 
   // Disclaimer text (10 lines matching generate-certificate.pdf)
   const disclaimer = [
-    'This card does not release the operator from his duty obligation',
-    'with regards to the safehandling, perfomance in operation',
-    'and/or reliability of the listed equipment. Any person not part of',
-    'the contract pursuant which this card is delivered may not assert',
-    'a claim against Pueau Veritas for any lability arising out of errors',
-    'or ommissione which may be contained in said card, or for errors',
-    'of judgment, faull or negligence committed by personnel of',
-    'the society or of its Agents in est. or issuance of this card, and',
-    'in connection with any activities for which it may provide.',
-    'SAG lcense is client responsibility.',
+    'This card does not release the operator from his duty',
+    'obligation with regards to the safehandling, perfomance',
+    'in operation and/or reliability of the listed equipment.',
+    'Any person not part of the contract pursuant which this',
+    'card is delivered may not assert a claim against Pueau',
+    'Veritas for any lability arising out of errors or ommissione',
+    'which may be contained in said card, or for errors of',
+    'judgment, faull or negligence committed by personnel of',
+    'the society or of its Agents in est. or issuance of this card,',
+    'and in connection with any activities for which it may ',
+    'provide. SAG lcense is client responsibility.',
   ];
 
   let disclaimerY = 226.0;
@@ -415,36 +418,36 @@ export async function generateCertificatePdf(
   const verifyDomain = 'https://e-certificates.bureauveritas.com';
 
   page2.drawText(verifyPrefix, {
-    x: 37.5,
+    x: 45.5,
     y: 51.75,
-    size: 14.5,
+    size: 15.5,
     font: helveticaBold,
     color: redColor,
   });
 
   const prefixWidth = helveticaBold.widthOfTextAtSize(verifyPrefix, 14.5);
   page2.drawText(verifyDomain, {
-    x: 37.5 + prefixWidth,
+    x: 65.5 + prefixWidth,
     y: 51.75,
-    size: 14.5,
+    size: 15.5,
     font: helveticaBold,
     color: redColor,
   });
 
   // Underline red link
-  const domainWidth = helveticaBold.widthOfTextAtSize(verifyDomain, 14.5);
+  const domainWidth = helveticaBold.widthOfTextAtSize(verifyDomain, 15.5);
   page2.drawLine({
-    start: { x: 37.5 + prefixWidth, y: 49.5 },
-    end: { x: 37.5 + prefixWidth + domainWidth, y: 49.5 },
-    thickness: 1.2,
+    start: { x: 65.5 + prefixWidth, y: 49.5 },
+    end: { x: 65.5 + prefixWidth + domainWidth, y: 49.5 },
+    thickness: 1.4,
     color: redColor,
   });
 
   // Bottom line across page 2
   page2.drawLine({
-    start: { x: 55, y: 16.5 },
-    end: { x: PAGE_WIDTH - 20, y: 16.5 },
-    thickness: 2.5,
+    start: { x: 65, y: 16.5 },
+    end: { x: PAGE_WIDTH, y: 16.5 },
+    thickness: 1.5,
     color: black,
   });
 

@@ -8,12 +8,9 @@ import {
   User,
   Award,
   Sparkles,
-  Plus,
-  Trash2,
   Upload,
   CheckCircle2,
   AlertCircle,
-  GraduationCap,
 } from 'lucide-react';
 
 interface TrainingRow {
@@ -231,7 +228,7 @@ export default function AddRecordPage() {
                 fontSize: '11px',
               }}
             >
-              Section 1 of 3
+              Section 1 of 2
             </span>
           </div>
           <div className="p-4">
@@ -250,18 +247,7 @@ export default function AddRecordPage() {
               </div>
               <div className="col-md-4">
                 <label className="form-label small fw-semibold text-slate-700">
-                  Profile ID
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={hsseProfileId}
-                  onChange={(e) => setHsseProfileId(e.target.value)}
-                />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">
-                  National / People ID
+                  ID
                 </label>
                 <input
                   type="text"
@@ -269,55 +255,6 @@ export default function AddRecordPage() {
                   value={peopleId}
                   onChange={(e) => setPeopleId(e.target.value)}
                 />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">Site</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={site}
-                  onChange={(e) => setSite(e.target.value)}
-                />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">Department</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={department}
-                  onChange={(e) => setDepartment(e.target.value)}
-                />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">Job Title</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={jobTitle}
-                  onChange={(e) => setJobTitle(e.target.value)}
-                />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">Role Scope</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={roleScope}
-                  onChange={(e) => setRoleScope(e.target.value)}
-                />
-              </div>
-              <div className="col-md-4">
-                <label className="form-label small fw-semibold text-slate-700">People Type</label>
-                <select
-                  className="form-select"
-                  value={peopleType}
-                  onChange={(e) => setPeopleType(e.target.value)}
-                >
-                  <option value="Employee">Employee</option>
-                  <option value="Subcontractor">Subcontractor</option>
-                  <option value="Contractor">Contractor</option>
-                  <option value="Visitor">Visitor</option>
-                </select>
               </div>
               <div className="col-md-4">
                 <label className="form-label small fw-semibold text-slate-700">Joining Date</label>
@@ -508,7 +445,9 @@ export default function AddRecordPage() {
           </div>
         </div>
 
-        {/* Card 3: Training Records */}
+        {/* =========================================================================
+            Card 3: Training Records (HIDDEN - Uncomment if needed back in UI)
+            =========================================================================
         <div className="tbc-card mb-4 overflow-hidden border-0 shadow-sm">
           <div
             className="px-4 py-3 d-flex justify-content-between align-items-center"
@@ -687,6 +626,7 @@ export default function AddRecordPage() {
             ))}
           </div>
         </div>
+        ========================================================================= */}
 
         {/* Action Buttons */}
         <div className="d-flex gap-2">

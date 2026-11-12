@@ -1,12 +1,17 @@
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './bureau.css';
 
 interface PageProps {
   params: Promise<{ uuid: string }>;
 }
+
+export const viewport: Viewport = {
+  width: 650,
+  initialScale: 1,
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
