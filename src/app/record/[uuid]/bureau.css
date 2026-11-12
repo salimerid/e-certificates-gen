@@ -1,36 +1,41 @@
-/* Bureau Veritas Authentication Portal Styles - Fixed Desktop Layout (Non-Responsive) */
-.bureau-wrapper {
+/* Bureau Veritas Authentication Portal Styles - Exact end-to-end copy */
+html, body {
+  height: 100%;
+}
+
+body:has(.bureau-body) {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+.bureau-body * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif !important;
-  min-height: 100vh;
-  min-width: 650px;
-  background-image: url("/bureau/background_industry.jpg");
+  font-family: arial, sans-serif;
+}
+
+.bureau-body {
+  background-image: url("/background_industry.jpg");
   background-color: #cccccc;
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding-top: 100px;
-  position: relative;
-  color: #000;
-  overflow-x: auto;
+  padding-top: 100px; /* Leave space for the fixed header */
+  position: static;
+  min-height: 100vh;
+  width: 100%;
 }
 
-.bureau-wrapper * {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
-.bureau-header {
+.bureau-body header {
   background: #00049e;
   color: #fff;
   padding: 10px 20px;
   display: flex;
   height: 100px;
   width: 100%;
-  min-width: 650px;
   position: fixed;
   top: 0;
   left: 0;
@@ -38,55 +43,72 @@
   align-items: center;
 }
 
-.bureau-header img {
+.bureau-body header img {
   width: 70px;
-  height: auto;
   margin-right: 20px;
-  flex-shrink: 0;
 }
 
-.bureau-header .qrc-app-logo-text {
-  font-size: 18px;
+.bureau-body header .qrc-app-logo-text {
+  font-size: 16px;
   color: #fff;
-  margin-bottom: 2px;
 }
 
-.bureau-header .qrc-app-logo-text b {
-  font-weight: bold;
+.bureau-body header h1 {
+  margin: 0;
+  font-size: 20px;
 }
 
-.bureau-header .qrc-app-logo-text span {
-  font-weight: normal;
+.bureau-body header p {
+  margin: 2px 0;
+  font-size: 14px;
 }
 
-.bureau-header p {
-  margin: 2px 0 !important;
-  font-size: 13px !important;
-  color: #fff !important;
-  line-height: 1.35;
+.bureau-body header div p {
+  font-size: 11px;
 }
 
-#main_container {
-  padding: 20px 0 40px 0;
+.bureau-body #main_container {
+  padding: 20px 0;
   position: relative;
   min-height: calc(100vh - 120px);
-  min-width: 650px;
 }
 
-#row_2 {
-  width: 630px;
+.bureau-body #row_2 {
+  width: 630px; /* for main container width */
   margin: 0 auto;
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
 }
 
-#row_2_1 {
-  background-image: url("/bureau/content_industry_top.png");
-  background-color: #cccccc;
-  height: 50px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.bureau-body #main_container #bottom_p {
+  position: fixed; /* fixed or relative */
+  bottom: -10px;
+  left: 10px;
+  z-index: 999;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}
+
+.bureau-body #main_container #bottom_p h4 {
+  text-align: center;
+  font-weight: normal;
+  padding: 5px;
+  width: 95%;
+}
+
+.bureau-body #main_container #bottom_p a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.bureau-body #row_2_1 {
+  background-image: url("/content_industry_top.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 50px; /* for gray color shape specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
   display: flex;
@@ -94,84 +116,156 @@
   align-items: center;
 }
 
-#row_2_1 img {
-  width: 40px;
-  height: auto;
+.bureau-body #row_2_1 img {
+  width: 40px; /* for tick mark in gray color shape */
 }
 
-#row_2_2 {
+.bureau-body #row_2_2 {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 12px 18px 45px 18px;
-  min-height: 420px;
+  padding: 10px;
+  height: 500px;
   position: relative;
 }
 
-#row_2_2 .bureau-field {
-  display: grid;
-  grid-template-columns: 170px auto;
-  align-items: start;
-  margin-bottom: 3.5px;
-}
-
-#row_2_2 .bureau-field .key {
-  font-weight: bold;
-  font-size: 14px;
-  color: #000;
-}
-
-#row_2_2 .bureau-field .value {
-  font-size: 13px;
-  color: #000;
-  word-break: break-word;
-}
-
-#row_2_2 .bureau-disclaimer {
+.bureau-body #row_2_2 p {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
   font-size: 12px;
-  padding: 14px 18px;
+  padding: 30px; /* for any further information text setting */
   font-weight: bold;
-  color: #000;
-  margin: 0;
 }
 
-#row_2_3 {
+/* Each row */
+.bureau-body #row_2_2 div {
+  display: grid;
+  grid-template-columns: 210px auto; /* label fixed, value flexible */
+  align-items: start;
+  margin-bottom: 5px;
+}
+
+.bureau-body #row_2_2 div .key {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.bureau-body #row_2_2 div .value {
+  font-size: 13px;
+  word-break: break-word; /* prevent long text overflow */
+}
+
+.bureau-body #row_2_3 {
   display: flex;
   justify-content: flex-end;
 }
 
-#row_2_3 img {
+.bureau-body #row_2_3 img {
   width: 300px;
-  height: auto;
-  display: block;
 }
 
-#bottom_p {
-  position: fixed;
-  bottom: 0px;
-  left: 10px;
-  z-index: 999;
-  padding: 10px 15px;
-  margin-bottom: 10px;
+/* Responsive styles */
+@media (max-width: 600px) {
+  .bureau-body #row_2_2 div {
+    grid-template-columns: 1fr; /* single column */
+  }
 }
 
-#bottom_p h4 {
-  text-align: center;
-  font-weight: normal;
-  padding: 0;
-  margin: 0 0 2px 0;
-  width: 95%;
-  font-size: 14px;
-  color: #000;
+@media (min-width: 601px) {
+  .bureau-body #row_2_2 div {
+    grid-template-columns: 210px auto;
+  }
 }
 
-#bottom_p a {
-  color: #000 !important;
-  font-weight: bold;
-  text-decoration: none !important;
-  font-size: 14px;
+@media only screen and (max-width: 1000px) {
+  .bureau-body #row_2 {
+    padding: 0;
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .bureau-body .key {
+    width: 200px;
+  }
+  .bureau-body #row_2_3 img {
+    width: 180px;
+  }
+  .bureau-body header img {
+    width: 50px;
+  }
+  .bureau-body {
+    background-position: 100% top;
+    padding-top: 70px;
+  }
+  .bureau-body header {
+    height: 80px;
+  }
+  .bureau-body header h1 {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .bureau-body .key {
+    width: 200px;
+  }
+  .bureau-body #row_2_3 img {
+    width: 180px;
+  }
+  .bureau-body header img {
+    width: 50px;
+  }
+  .bureau-body {
+    background-position: 100% top;
+    padding-top: 70px;
+  }
+  .bureau-body header {
+    height: 80px;
+  }
+  .bureau-body header h1 {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .bureau-body {
+    background-position: 100% top;
+    padding-top: 50px;
+  }
+  .bureau-body header {
+    height: 90px;
+  }
+  .bureau-body header h1 {
+    font-size: 14px;
+    margin: 0;
+  }
+  .bureau-body header p {
+    font-size: 10.5px;
+  }
+  .bureau-body header img {
+    width: 50px;
+  }
+  .bureau-body #main_container {
+    margin-top: 10px;
+  }
+  .bureau-body #row_2_1 {
+    margin-top: 20px;
+  }
+  .bureau-body #row_2_2 div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bureau-body .key,
+  .bureau-body .value {
+    width: 100%;
+  }
+  .bureau-body .key {
+    margin-bottom: -2px;
+  }
+  .bureau-body #row_2_3 img {
+    width: 180px;
+  }
 }

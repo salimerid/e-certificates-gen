@@ -65,8 +65,10 @@ export default function EditRecordPage() {
   const [validUntil, setValidUntil] = useState('');
   const [company, setCompany] = useState('TBC CONSTRUCTION');
   const [courseType, setCourseType] = useState('WELDER 3G 4G');
+  const [model, setModel] = useState('N/A');
   const [trainer, setTrainer] = useState('ZEESHAN KHAN');
   const [location, setLocation] = useState('JUBAIL');
+  const [issuanceNo, setIssuanceNo] = useState('1');
 
   // Dynamic Training Rows
   const [trainings, setTrainings] = useState<TrainingRow[]>([{ ...emptyTrainingRow }]);
@@ -101,8 +103,10 @@ export default function EditRecordPage() {
           setValidUntil(r.validUntil ? r.validUntil.split('T')[0] : '');
           setCompany(r.company || 'TBC CONSTRUCTION');
           setCourseType(r.courseType || 'WELDER 3G 4G');
+          setModel(r.model || 'N/A');
           setTrainer(r.trainer || 'ZEESHAN KHAN');
           setLocation(r.location || 'JUBAIL');
+          setIssuanceNo(r.issuanceNo || '1');
 
           if (r.trainings && r.trainings.length > 0) {
             setTrainings(
@@ -199,8 +203,10 @@ export default function EditRecordPage() {
           valid_until: validUntil,
           company,
           course_type: courseType,
+          model,
           trainer,
           location,
+          issuance_no: issuanceNo,
           trainings,
         }),
       });
@@ -483,6 +489,16 @@ export default function EditRecordPage() {
                 />
               </div>
               <div className="col-md-3">
+                <label className="form-label small fw-semibold text-slate-700">Model</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  placeholder="e.g. N/A"
+                />
+              </div>
+              <div className="col-md-3">
                 <label className="form-label small fw-semibold text-slate-700">Trainer</label>
                 <input
                   type="text"
@@ -500,6 +516,16 @@ export default function EditRecordPage() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g. Jubail Industrial City Campus"
+                />
+              </div>
+              <div className="col-md-3">
+                <label className="form-label small fw-semibold text-slate-700">Issuance No.</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  value={issuanceNo}
+                  onChange={(e) => setIssuanceNo(e.target.value)}
+                  placeholder="e.g. 1"
                 />
               </div>
             </div>

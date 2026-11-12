@@ -63,8 +63,10 @@ export default function AddRecordPage() {
   );
   const [company, setCompany] = useState('');
   const [courseType, setCourseType] = useState('');
+  const [model, setModel] = useState('N/A');
   const [trainer, setTrainer] = useState('');
   const [location, setLocation] = useState('');
+  const [issuanceNo, setIssuanceNo] = useState('1');
 
   // Dynamic Training Rows
   const [trainings, setTrainings] = useState<TrainingRow[]>([
@@ -142,8 +144,10 @@ export default function AddRecordPage() {
           valid_until: validUntil,
           company,
           course_type: courseType,
+          model,
           trainer,
           location,
+          issuance_no: issuanceNo,
           trainings,
         }),
       });
@@ -422,6 +426,16 @@ export default function AddRecordPage() {
                 />
               </div>
               <div className="col-md-3">
+                <label className="form-label small fw-semibold text-slate-700">Model</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  placeholder="e.g. N/A"
+                />
+              </div>
+              <div className="col-md-3">
                 <label className="form-label small fw-semibold text-slate-700">Trainer</label>
                 <input
                   type="text"
@@ -439,6 +453,16 @@ export default function AddRecordPage() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g. Jubail Industrial City Campus"
+                />
+              </div>
+              <div className="col-md-3">
+                <label className="form-label small fw-semibold text-slate-700">Issuance No.</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  value={issuanceNo}
+                  onChange={(e) => setIssuanceNo(e.target.value)}
+                  placeholder="e.g. 1"
                 />
               </div>
             </div>

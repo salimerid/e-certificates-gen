@@ -9,7 +9,7 @@ interface PageProps {
 }
 
 export const viewport: Viewport = {
-  width: 650,
+  width: 'device-width',
   initialScale: 1,
 };
 
@@ -21,9 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 function formatDate(d?: Date | null): string {
-  if (!d) return '—';
+  if (!d) return '09/08/2026';
   const date = new Date(d);
-  if (isNaN(date.getTime())) return '—';
+  if (isNaN(date.getTime())) return '09/08/2026';
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
@@ -60,16 +60,16 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
   const peopleId = record.peopleId || '2631733033';
   const issuedOn = record.issuedOn ? formatDate(record.issuedOn) : '09/08/2026';
   const validUntil = record.validUntil ? formatDate(record.validUntil) : '08/08/2027';
-  const courseType = record.courseType || record.trainings?.[0]?.topic || record.jobTitle || 'WELDER 3G 4G';
+  const courseType = record.courseType || record.trainings?.[0]?.topic || 'WELDER 3G 4G';
   const model = record.model || 'N/A';
-  const company = record.company || 'PRIVATE';
-  const location = record.location || record.site || 'JUBAIL';
-  const trainer = record.trainer || 'ZEESHAN KHAN';
+  const company = (record.company || 'PRIVATE').toUpperCase();
+  const location = (record.location || record.site || 'JUBAIL').toUpperCase();
+  const trainer = (record.trainer || 'ZEESHAN KHAN').toUpperCase();
 
   return (
-    <div className="bureau-wrapper">
-      <header className="bureau-header">
-        <img src="/bureau/fingerprint.png" alt="Authenticate" />
+    <div className="bureau-body">
+      <header>
+        <img src="/fingerprint.png" alt="Authenticate" />
         <div>
           <div className="qrc-app-logo-text">
             <b>Authenticate </b>
@@ -83,11 +83,11 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
       <div id="main_container">
         <div id="row_2">
           <div id="row_2_1">
-            <img src="/bureau/circle_success.png" alt="Success" />
+            <img src="/circle_success.png" alt="Success" />
           </div>
 
           <div id="row_2_2">
-            <div className="bureau-field">
+            <div>
               <span className="key">Deliverable Id :</span>
               <span className="value">
                 <a
@@ -102,68 +102,68 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
               </span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">Published on :</span>
               <span className="value">{publishedOn}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">QR Code Status :</span>
               <span className="value">{qrStatus}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">NAME :</span>
               <span className="value">{name}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">ID :</span>
               <span className="value">{peopleId}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">ISSUED ON :</span>
               <span className="value">{issuedOn}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">VALID UNTIL :</span>
               <span className="value">{validUntil}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">TYPE :</span>
               <span className="value">{courseType}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">MODEL :</span>
               <span className="value">{model}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">COMPANY :</span>
               <span className="value">{company}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">TRAINING LOCATION :</span>
               <span className="value">{location}</span>
             </div>
 
-            <div className="bureau-field">
+            <div>
               <span className="key">TRAINER :</span>
               <span className="value">{trainer}</span>
             </div>
 
-            <p className="bureau-disclaimer">
+            <p>
               For any further information on this document, please contact the issuer of the document.
             </p>
           </div>
 
           <div id="row_2_3">
-            <img src="/bureau/content_industry_bottom.png" alt="Bottom Angle" />
+            <img src="/content_industry_bottom.png" alt="Bottom Angle" />
           </div>
 
           <div id="bottom_p">
@@ -172,7 +172,6 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
               Bureau Veritas Website
             </a>
           </div>
-
         </div>
       </div>
     </div>
