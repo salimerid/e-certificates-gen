@@ -1,4 +1,17 @@
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import {
+  PDFDocument,
+  rgb,
+  StandardFonts,
+  PDFPage,
+  PDFFont,
+  Color,
+  setTextRenderingMode,
+  TextRenderingMode,
+  setLineWidth,
+  setStrokingColor,
+  pushGraphicsState,
+  popGraphicsState,
+} from 'pdf-lib';
 import QRCode from 'qrcode';
 import fs from 'fs';
 import path from 'path';
@@ -29,6 +42,28 @@ function formatDate(d?: Date | string | null): string {
   const mm = String(date.getMonth() + 1).padStart(2, '0');
   const yyyy = date.getFullYear();
   return `${dd}/${mm}/${yyyy}`;
+}
+
+function drawBoldText(
+  page: PDFPage,
+  text: string,
+  options: {
+    x: number;
+    y: number;
+    size: number;
+    font: PDFFont;
+    color: Color;
+  },
+  strokeWidth: number = 0.65
+) {
+  page.pushOperators(
+    pushGraphicsState(),
+    setTextRenderingMode(TextRenderingMode.FillAndOutline),
+    setLineWidth(strokeWidth),
+    setStrokingColor(options.color)
+  );
+  page.drawText(text, options);
+  page.pushOperators(popGraphicsState());
 }
 
 export async function generateCertificatePdf(
@@ -167,48 +202,73 @@ export async function generateCertificatePdf(
   const validUntilDate = formatDate(data.validUntil || '2027-08-08');
 
   // Certificate No
-  page1.drawText('Certificate No:', {
-    x: headerX,
-    y: 441.75,
-    size: 19,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    'Certificate No:',
+    {
+      x: headerX,
+      y: 441.75,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.65
+  );
 
-  page1.drawText(certNo, {
-    x: headerX,
-    y: 408.0,
-    size: 22,
-    font: helveticaBold,
-    color: certColor,
-  });
+  drawBoldText(
+    page1,
+    certNo,
+    {
+      x: headerX,
+      y: 408.0,
+      size: 22,
+      font: helveticaBold,
+      color: certColor,
+    },
+    0.65
+  );
 
   // Ref.#
-  page1.drawText(`Ref.#  ${refNo}`, {
-    x: headerX,
-    y: 373.5,
-    size: 19,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `Ref.#  ${refNo}`,
+    {
+      x: headerX,
+      y: 373.5,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.65
+  );
 
   // Issued On
-  page1.drawText(`Issued On:   ${issuedDate}`, {
-    x: headerX,
-    y: 339.0,
-    size: 19,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `Issued On:   ${issuedDate}`,
+    {
+      x: headerX,
+      y: 339.0,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.65
+  );
 
   // Valid until
-  page1.drawText(`Valid until:  ${validUntilDate}`, {
-    x: headerX,
-    y: 304.5,
-    size: 19,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `Valid until:  ${validUntilDate}`,
+    {
+      x: headerX,
+      y: 304.5,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.65
+  );
 
   // Middle Details (Person info)
   const bodyX = 36.0;
@@ -218,53 +278,78 @@ export async function generateCertificatePdf(
   const issuanceValue = data.issuanceNo || '1';
 
   // Name
-  page1.drawText('Name: ', {
-    x: bodyX,
-    y: 261.0,
-    size: 25,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    'Name: ',
+    {
+      x: bodyX,
+      y: 261.0,
+      size: 25,
+      font: helveticaBold,
+      color: black,
+    },
+    0.75
+  );
 
   let nameSize = 25;
   while (helveticaBold.widthOfTextAtSize(nameUpper, nameSize) > 590 && nameSize > 16) {
     nameSize -= 0.5;
   }
 
-  page1.drawText(nameUpper, {
-    x: bodyX + 90,
-    y: 261.0,
-    size: nameSize,
-    font: helveticaBold,
-    color: royalBlue,
-  });
+  drawBoldText(
+    page1,
+    nameUpper,
+    {
+      x: bodyX + 90,
+      y: 261.0,
+      size: nameSize,
+      font: helveticaBold,
+      color: royalBlue,
+    },
+    0.75
+  );
 
   // ID No
-  page1.drawText(`ID No:  ${idValue}`, {
-    x: bodyX,
-    y: 213.0,
-    size: 25,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `ID No:  ${idValue}`,
+    {
+      x: bodyX,
+      y: 213.0,
+      size: 25,
+      font: helveticaBold,
+      color: black,
+    },
+    0.75
+  );
 
   // Company
-  page1.drawText(`Company:   ${companyValue}`, {
-    x: bodyX,
-    y: 164.25,
-    size: 25,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `Company:   ${companyValue}`,
+    {
+      x: bodyX,
+      y: 164.25,
+      size: 25,
+      font: helveticaBold,
+      color: black,
+    },
+    0.75
+  );
 
   // Issuance No
-  page1.drawText(`Issuance No.:  ${issuanceValue}`, {
-    x: bodyX,
-    y: 124.5,
-    size: 23,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    `Issuance No.:  ${issuanceValue}`,
+    {
+      x: bodyX,
+      y: 124.5,
+      size: 25,
+      font: helveticaBold,
+      color: black,
+    },
+    0.75
+  );
 
   // Footer Section
   const noticeLine1 =
@@ -275,37 +360,57 @@ export async function generateCertificatePdf(
     'For any enquiries: Tel. 013 347 9683';
   const emailText = 'bv.jubail.admin@bureauveritas.com';
 
-  page1.drawText(noticeLine1, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 24)) / 2,
-    y: 78.0,
-    size: 24,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    noticeLine1,
+    {
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 24)) / 2,
+      y: 78.0,
+      size: 24,
+      font: helveticaBold,
+      color: black,
+    },
+    0.55
+  );
 
-  page1.drawText(noticeLine2, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 24)) / 2,
-    y: 57.75,
-    size: 24,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    noticeLine2,
+    {
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 24)) / 2,
+      y: 57.75,
+      size: 24,
+      font: helveticaBold,
+      color: black,
+    },
+    0.55
+  );
 
-  page1.drawText(enquiriesText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 24)) / 2,
-    y: 30.0,
-    size: 22,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    enquiriesText,
+    {
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 22)) / 2,
+      y: 30.0,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.5
+  );
 
-  page1.drawText(emailText, {
-    x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 24)) / 2,
-    y: 11.0,
-    size: 22,
-    font: helveticaBold,
-    color: black,
-  });
+  drawBoldText(
+    page1,
+    emailText,
+    {
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 22)) / 2,
+      y: 11.0,
+      size: 22,
+      font: helveticaBold,
+      color: black,
+    },
+    0.5
+  );
 
 
   // ==========================================
