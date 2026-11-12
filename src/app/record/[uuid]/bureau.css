@@ -103,16 +103,16 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 15px 20px 65px 20px;
-  min-height: 500px;
+  padding: 12px 18px 45px 18px;
+  min-height: 420px;
   position: relative;
 }
 
 #row_2_2 .bureau-field {
   display: grid;
-  grid-template-columns: 210px auto;
+  grid-template-columns: 170px auto;
   align-items: start;
-  margin-bottom: 5px;
+  margin-bottom: 3.5px;
 }
 
 #row_2_2 .bureau-field .key {
@@ -133,7 +133,7 @@
   left: 0;
   right: 0;
   font-size: 12px;
-  padding: 20px;
+  padding: 14px 18px;
   font-weight: bold;
   color: #000;
   margin: 0;
