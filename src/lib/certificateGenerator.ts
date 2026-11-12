@@ -74,7 +74,7 @@ export async function generateCertificatePdf(
 
   const helveticaBold = await doc.embedFont(StandardFonts.HelveticaBold);
 
-  const PAGE_WIDTH = 745.25;
+  const PAGE_WIDTH = 755.25;
   const PAGE_HEIGHT = 475.5;
 
   // Exact colors matching generate-certificate.pdf
@@ -142,10 +142,10 @@ export async function generateCertificatePdf(
   // Watermark (circular seal in center background)
   if (watermarkImg) {
     page1.drawImage(watermarkImg, {
-      x: 160,
+      x: 183,
       y: 0,
-      width: 400,
-      height: 480,
+      width: 369,
+      height: 478,
       opacity: 1,
     });
   }
@@ -156,16 +156,16 @@ export async function generateCertificatePdf(
       x: 20,
       y: 298.5,
       width: 125,
-      height: 172,
+      height: 162,
     });
   }
 
   // Person Photo top right (sits directly on top of divider line y=297)
   if (avatarImg) {
     page1.drawImage(avatarImg, {
-      x: 582,
+      x: 576,
       y: 298.5,
-      width: 156,
+      width: 163,
       height: 170,
     });
   }
@@ -208,11 +208,11 @@ export async function generateCertificatePdf(
     {
       x: headerX,
       y: 441.75,
-      size: 22,
+      size: 25,
       font: helveticaBold,
       color: black,
     },
-    0.65
+    1
   );
 
   drawBoldText(
@@ -221,11 +221,11 @@ export async function generateCertificatePdf(
     {
       x: headerX,
       y: 408.0,
-      size: 22,
+      size: 25,
       font: helveticaBold,
       color: certColor,
     },
-    0.65
+    1
   );
 
   // Ref.#
@@ -235,11 +235,11 @@ export async function generateCertificatePdf(
     {
       x: headerX,
       y: 373.5,
-      size: 22,
+      size: 25,
       font: helveticaBold,
       color: black,
     },
-    0.65
+    1
   );
 
   // Issued On
@@ -249,11 +249,11 @@ export async function generateCertificatePdf(
     {
       x: headerX,
       y: 339.0,
-      size: 22,
+      size: 25,
       font: helveticaBold,
       color: black,
     },
-    0.65
+    1
   );
 
   // Valid until
@@ -263,11 +263,11 @@ export async function generateCertificatePdf(
     {
       x: headerX,
       y: 304.5,
-      size: 22,
+      size: 25,
       font: helveticaBold,
       color: black,
     },
-    0.65
+    1
   );
 
   // Middle Details (Person info)
@@ -284,11 +284,11 @@ export async function generateCertificatePdf(
     {
       x: bodyX,
       y: 261.0,
-      size: 25,
+      size: 26,
       font: helveticaBold,
       color: black,
     },
-    0.75
+    1
   );
 
   let nameSize = 25;
@@ -306,7 +306,7 @@ export async function generateCertificatePdf(
       font: helveticaBold,
       color: royalBlue,
     },
-    0.75
+    1
   );
 
   // ID No
@@ -316,11 +316,11 @@ export async function generateCertificatePdf(
     {
       x: bodyX,
       y: 213.0,
-      size: 25,
+      size: 27,
       font: helveticaBold,
       color: black,
     },
-    0.75
+    1
   );
 
   // Company
@@ -330,11 +330,11 @@ export async function generateCertificatePdf(
     {
       x: bodyX,
       y: 164.25,
-      size: 25,
+      size: 27,
       font: helveticaBold,
       color: black,
     },
-    0.75
+    1
   );
 
   // Issuance No
@@ -344,11 +344,11 @@ export async function generateCertificatePdf(
     {
       x: bodyX,
       y: 124.5,
-      size: 25,
+      size: 26,
       font: helveticaBold,
       color: black,
     },
-    0.75
+    1
   );
 
   // Footer Section
@@ -364,26 +364,26 @@ export async function generateCertificatePdf(
     page1,
     noticeLine1,
     {
-      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 24)) / 2,
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine1, 23)) / 2,
       y: 78.0,
-      size: 24,
+      size: 23,
       font: helveticaBold,
       color: black,
     },
-    0.55
+      0
   );
 
   drawBoldText(
     page1,
     noticeLine2,
     {
-      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 24)) / 2,
+      x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(noticeLine2, 23)) / 2,
       y: 57.75,
-      size: 24,
+      size: 23,
       font: helveticaBold,
       color: black,
     },
-    0.55
+    0
   );
 
   drawBoldText(
@@ -392,11 +392,11 @@ export async function generateCertificatePdf(
     {
       x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(enquiriesText, 22)) / 2,
       y: 30.0,
-      size: 22,
+      size: 21,
       font: helveticaBold,
       color: black,
     },
-    0.5
+    0
   );
 
   drawBoldText(
@@ -405,11 +405,11 @@ export async function generateCertificatePdf(
     {
       x: (PAGE_WIDTH - helveticaBold.widthOfTextAtSize(emailText, 22)) / 2,
       y: 11.0,
-      size: 22,
+      size: 21,
       font: helveticaBold,
       color: black,
     },
-    0.5
+    0
   );
 
 
