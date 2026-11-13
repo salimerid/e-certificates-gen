@@ -1,4 +1,4 @@
-/* Bureau Veritas Authentication Portal Styles - Exact match for Desktop & Mobile */
+/* Bureau Veritas Authentication Portal Styles */
 html, body {
   height: 100%;
 }
@@ -16,6 +16,7 @@ body:has(.bureau-body) {
   font-family: arial, sans-serif;
 }
 
+/* Background image is NOT responsive - stays bottom fixed at all times */
 .bureau-body {
   background-image: url("/background_industry.jpg");
   background-color: #cccccc;
@@ -23,15 +24,13 @@ body:has(.bureau-body) {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding-top: 100px; /* Space for the fixed header */
+  padding-top: 100px;
   position: static;
   min-height: 100vh;
   width: 100%;
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* Header */
 .bureau-body header {
   background: #00049e;
   color: #fff;
@@ -73,23 +72,22 @@ body:has(.bureau-body) {
   line-height: 1.35;
 }
 
-/* =========================================================
-   MAIN CONTAINER & CARD
-   ========================================================= */
+/* Main Container */
 .bureau-body #main_container {
   padding: 20px 0 50px 0;
   position: relative;
   min-height: calc(100vh - 120px);
 }
 
+/* Card width is 630px ALL TIME */
 .bureau-body #row_2 {
   width: 630px;
-  max-width: 94%;
   margin: 0 auto;
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
 }
 
+/* Card top curved shape */
 .bureau-body #row_2_1 {
   background-image: url("/content_industry_top.png");
   background-color: #cccccc;
@@ -108,21 +106,22 @@ body:has(.bureau-body) {
   width: 40px;
 }
 
+/* Card body CSS: background-color: #fff; display: flex; flex-direction: column; padding: 10px; height: 500px; position: relative; */
 .bureau-body #row_2_2 {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 15px 22px;
+  padding: 10px;
   min-height: 500px;
   height: auto;
   position: relative;
 }
 
-/* Each field row */
+/* Each row inside card */
 .bureau-body #row_2_2 div {
-  display: grid;
-  grid-template-columns: 210px auto;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 5px;
 }
 
@@ -130,42 +129,41 @@ body:has(.bureau-body) {
   font-weight: bold;
   font-size: 14.5px;
   color: #000;
+  line-height: 1.25;
+  margin-bottom: 1px;
 }
 
 .bureau-body #row_2_2 div .value {
   font-size: 13.5px;
   color: #000;
+  line-height: 1.25;
   word-break: break-word;
 }
 
 /* Disclaimer text inside card */
 .bureau-body #row_2_2 p {
-  margin-top: auto;
-  font-size: 12.5px;
-  padding: 25px 5px 8px 5px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  max-width: 85%;
+  font-size: 12px;
+  padding: 10px 5px;
   font-weight: bold;
   color: #000;
   line-height: 1.4;
+  text-align: right;
   position: relative;
 }
 
-/* Gray corner triangle below card */
+/* Bottom corner triangle */
 .bureau-body #row_2_3 {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.bureau-body #row_2_3 img {
-  width: 300px;
-  max-width: 100%;
-  height: auto;
-  display: block;
+  display: none;
 }
 
 /* Bottom "Visit Bureau Veritas Website" link */
 .bureau-body #bottom_p {
   text-align: center;
-  padding: 22px 15px 30px 15px;
+  padding: 20px 15px 40px 15px;
   margin: 0 auto;
   position: static;
   z-index: 999;
@@ -188,165 +186,20 @@ body:has(.bureau-body) {
   display: inline-block;
 }
 
-/* =========================================================
-   MOBILE RESPONSIVE STYLES (Matching Original Mobile Screenshots)
-   ========================================================= */
-@media (max-width: 600px) {
-  .bureau-body {
-    background-position: 100% top;
-    padding-top: 85px;
-  }
-
+/* Mobile Header scaling */
+@media (max-width: 850px) {
   .bureau-body header {
     height: 80px;
-    padding: 10px 14px;
   }
-
   .bureau-body header img {
-    width: 46px;
-    margin-right: 12px;
+    width: 50px;
+    margin-right: 15px;
   }
-
-  .bureau-body header .qrc-app-logo-text {
-    font-size: 17.5px;
-    margin-bottom: 1px;
-  }
-
-  .bureau-body header p {
-    font-size: 11px;
-    line-height: 1.25;
-    margin: 1px 0;
-  }
-
-  .bureau-body #main_container {
-    padding: 12px 0 40px 0;
-  }
-
-  .bureau-body #row_2 {
-    width: 94%;
-    max-width: 480px;
-    border-top-right-radius: 40px;
-    border-top-left-radius: 40px;
-  }
-
-  .bureau-body #row_2_1 {
-    height: 48px;
-    border-top-right-radius: 40px;
-    border-top-left-radius: 40px;
-  }
-
-  .bureau-body #row_2_1 img {
-    width: 38px;
-  }
-
-  .bureau-body #row_2_2 {
-    padding: 16px 18px 24px 18px;
-    min-height: auto;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  /* Stack key and value vertically on mobile */
-  .bureau-body #row_2_2 div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 13px;
-  }
-
-  .bureau-body #row_2_2 div .key {
-    font-size: 17.5px;
-    font-weight: bold;
-    color: #000;
-    line-height: 1.25;
-    margin-bottom: 2px;
-    width: 100%;
-  }
-
-  .bureau-body #row_2_2 div .value {
-    font-size: 16.5px;
-    font-weight: normal;
-    color: #000;
-    line-height: 1.25;
-    width: 100%;
-  }
-
-  /* Right-aligned disclaimer matching Image 1 */
-  .bureau-body #row_2_2 p {
-    margin-top: 24px;
-    margin-bottom: 4px;
-    margin-left: auto;
-    max-width: 88%;
-    font-size: 13.5px;
-    font-weight: bold;
-    line-height: 1.4;
-    text-align: right;
-    padding: 0;
-    color: #000;
-  }
-
-  /* Clean straight bottom matching Image 1 */
-  .bureau-body #row_2_3 {
-    display: none;
-  }
-
-  /* Centered Visit footer on background floor matching Image 1 */
-  .bureau-body #bottom_p {
-    padding: 18px 10px 30px 10px;
-  }
-
-  .bureau-body #bottom_p h4 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 3px;
-  }
-
-  .bureau-body #bottom_p a {
-    font-size: 20px;
-    font-weight: bold;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .bureau-body {
-    padding-top: 80px;
-  }
-
-  .bureau-body header {
-    height: 78px;
-    padding: 8px 12px;
-  }
-
-  .bureau-body header img {
-    width: 42px;
-    margin-right: 10px;
-  }
-
   .bureau-body header .qrc-app-logo-text {
     font-size: 16px;
   }
-
   .bureau-body header p {
-    font-size: 10.5px;
-  }
-
-  .bureau-body #row_2_2 div .key {
-    font-size: 16.5px;
-  }
-
-  .bureau-body #row_2_2 div .value {
-    font-size: 15.5px;
-  }
-
-  .bureau-body #row_2_2 p {
-    font-size: 13px;
-    max-width: 92%;
-  }
-
-  .bureau-body #bottom_p h4 {
-    font-size: 17px;
-  }
-
-  .bureau-body #bottom_p a {
-    font-size: 19px;
+    font-size: 11px;
+    line-height: 1.25;
   }
 }
