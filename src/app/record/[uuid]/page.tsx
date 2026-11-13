@@ -162,15 +162,17 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div id="row_2_3">
-            <img src="/content_industry_bottom.png" alt="Bottom Angle" />
-          </div>
+          <div id="row_2_bottom">
+            <div id="bottom_p">
+              <h4>Visit</h4>
+              <a href="https://group.bureauveritas.com/" target="_blank" rel="noopener noreferrer">
+                Bureau Veritas Website
+              </a>
+            </div>
 
-          <div id="bottom_p">
-            <h4>Visit</h4>
-            <a href="https://group.bureauveritas.com/" target="_blank" rel="noopener noreferrer">
-              Bureau Veritas Website
-            </a>
+            <div id="row_2_3">
+              <img src="/content_industry_bottom.png" alt="Bottom Angle" />
+            </div>
           </div>
         </div>
       </div>

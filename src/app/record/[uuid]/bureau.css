@@ -153,33 +153,44 @@ body:has(.bureau-body) {
   position: relative;
 }
 
-/* Gray corner triangle below card */
+/* Bottom container holding left Visit footer and right angle graphic */
+.bureau-body #row_2_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+/* Gray corner triangle below card on right side */
 .bureau-body #row_2_3 {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+  flex-shrink: 0;
 }
 
 .bureau-body #row_2_3 img {
-  width: 300px;
+  width: 260px;
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Bottom "Visit Bureau Veritas Website" link */
+/* Bottom "Visit Bureau Veritas Website" link on the left side */
 .bureau-body #bottom_p {
-  text-align: center;
-  padding: 16px 15px 30px 15px;
-  margin: 0 auto;
+  text-align: left;
+  padding: 10px 10px 18px 12px;
+  margin: 0;
   position: static;
   z-index: 999;
 }
 
 .bureau-body #bottom_p h4 {
-  text-align: center;
+  text-align: left;
   font-weight: normal;
   padding: 0;
-  margin: 0 0 3px 0;
+  margin: 0 0 2px 0;
   font-size: 16px;
   color: #000;
 }
@@ -189,7 +200,8 @@ body:has(.bureau-body) {
   font-weight: bold;
   text-decoration: none !important;
   font-size: 16px;
-  display: inline-block;
+  display: block;
+  text-align: left;
 }
 
 /* =========================================================
@@ -283,31 +295,46 @@ body:has(.bureau-body) {
     max-width: 100%;
   }
 
+  /* Bottom row containing left Visit footer and right angle graphic */
+  .bureau-body #row_2_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+  }
+
   /* Bottom right triangle on mobile */
   .bureau-body #row_2_3 {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
+    flex-shrink: 0;
   }
 
   .bureau-body #row_2_3 img {
-    width: 140px;
+    width: 130px;
     height: auto;
     display: block;
   }
 
-  /* Bottom Visit footer */
+  /* Bottom Visit footer on left side */
   .bureau-body #bottom_p {
-    padding: 12px 10px 25px 10px;
+    text-align: left;
+    padding: 8px 8px 16px 10px;
+    margin: 0;
   }
 
   .bureau-body #bottom_p h4 {
-    font-size: 16px;
+    text-align: left;
+    font-size: 15px;
     font-weight: normal;
     margin-bottom: 2px;
   }
 
   .bureau-body #bottom_p a {
-    font-size: 16px;
+    text-align: left;
+    font-size: 15.5px;
     font-weight: bold;
+    display: block;
   }
 }
