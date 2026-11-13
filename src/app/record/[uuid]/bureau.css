@@ -30,7 +30,9 @@ body:has(.bureau-body) {
   width: 100%;
 }
 
-/* Header */
+/* =========================================================
+   HEADER
+   ========================================================= */
 .bureau-body header {
   background: #00049e;
   color: #fff;
@@ -72,14 +74,16 @@ body:has(.bureau-body) {
   line-height: 1.35;
 }
 
-/* Main Container */
+/* =========================================================
+   MAIN CONTAINER & CARD (PC / LAPTOP / TABLET: 630px)
+   ========================================================= */
 .bureau-body #main_container {
-  padding: 20px 0 50px 0;
+  padding: 20px 0 40px 0;
   position: relative;
   min-height: calc(100vh - 120px);
 }
 
-/* Card width is 630px ALL TIME */
+/* Card width for tablet and laptop/PC: 630px */
 .bureau-body #row_2 {
   width: 630px;
   margin: 0 auto;
@@ -106,64 +110,66 @@ body:has(.bureau-body) {
   width: 40px;
 }
 
-/* Card body CSS: background-color: #fff; display: flex; flex-direction: column; padding: 10px; height: 500px; position: relative; */
+/* Card body CSS */
 .bureau-body #row_2_2 {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 16px;
   min-height: 500px;
   height: auto;
   position: relative;
 }
 
-/* Each row inside card */
+/* Each row inside card (Desktop/Tablet: 2 columns) */
 .bureau-body #row_2_2 div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 210px auto;
+  align-items: start;
   margin-bottom: 5px;
 }
 
 .bureau-body #row_2_2 div .key {
   font-weight: bold;
-  font-size: 14.5px;
+  font-size: 14px;
   color: #000;
-  line-height: 1.25;
-  margin-bottom: 1px;
 }
 
 .bureau-body #row_2_2 div .value {
-  font-size: 13.5px;
+  font-size: 13px;
   color: #000;
-  line-height: 1.25;
   word-break: break-word;
 }
 
 /* Disclaimer text inside card */
 .bureau-body #row_2_2 p {
-  margin-top: 25px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  max-width: 85%;
+  margin-top: auto;
   font-size: 12px;
-  padding: 10px 5px;
+  padding: 20px 10px 5px 10px;
   font-weight: bold;
   color: #000;
   line-height: 1.4;
-  text-align: right;
+  text-align: center;
   position: relative;
 }
 
-/* Bottom corner triangle */
+/* Gray corner triangle below card */
 .bureau-body #row_2_3 {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bureau-body #row_2_3 img {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Bottom "Visit Bureau Veritas Website" link */
 .bureau-body #bottom_p {
   text-align: center;
-  padding: 20px 15px 40px 15px;
+  padding: 16px 15px 30px 15px;
   margin: 0 auto;
   position: static;
   z-index: 999;
@@ -171,10 +177,10 @@ body:has(.bureau-body) {
 
 .bureau-body #bottom_p h4 {
   text-align: center;
-  font-weight: bold;
+  font-weight: normal;
   padding: 0;
-  margin: 0 0 4px 0;
-  font-size: 18px;
+  margin: 0 0 3px 0;
+  font-size: 16px;
   color: #000;
 }
 
@@ -182,24 +188,126 @@ body:has(.bureau-body) {
   color: #000 !important;
   font-weight: bold;
   text-decoration: none !important;
-  font-size: 20px;
+  font-size: 16px;
   display: inline-block;
 }
 
-/* Mobile Header scaling */
-@media (max-width: 850px) {
+/* =========================================================
+   MOBILE VIEW (iPhone 16 / iPhone SE / mobile <= 767px)
+   ========================================================= */
+@media (max-width: 767px) {
+  .bureau-body {
+    padding-top: 85px;
+  }
+
   .bureau-body header {
     height: 80px;
+    padding: 10px 14px;
   }
+
   .bureau-body header img {
     width: 50px;
-    margin-right: 15px;
+    margin-right: 14px;
   }
+
   .bureau-body header .qrc-app-logo-text {
     font-size: 16px;
+    margin-bottom: 2px;
   }
+
   .bureau-body header p {
     font-size: 11px;
     line-height: 1.25;
+    margin: 1px 0;
+  }
+
+  /* Card width for iPhone 16 (400px) and iPhone SE (max-width: 95%) */
+  .bureau-body #row_2 {
+    width: 400px;
+    max-width: 95%;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+  }
+
+  .bureau-body #row_2_1 {
+    height: 50px;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+  }
+
+  .bureau-body #row_2_1 img {
+    width: 40px;
+  }
+
+  .bureau-body #row_2_2 {
+    padding: 10px 14px;
+    min-height: 500px;
+    height: auto;
+  }
+
+  /* Stack key and value vertically on mobile */
+  .bureau-body #row_2_2 div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  .bureau-body #row_2_2 div .key {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.25;
+    margin-bottom: 1px;
+    width: 100%;
+  }
+
+  .bureau-body #row_2_2 div .value {
+    font-size: 13px;
+    font-weight: normal;
+    color: #000;
+    line-height: 1.25;
+    width: 100%;
+  }
+
+  /* Centered disclaimer inside card */
+  .bureau-body #row_2_2 p {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 10px;
+    color: #000;
+    max-width: 100%;
+  }
+
+  /* Bottom right triangle on mobile */
+  .bureau-body #row_2_3 {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .bureau-body #row_2_3 img {
+    width: 140px;
+    height: auto;
+    display: block;
+  }
+
+  /* Bottom Visit footer */
+  .bureau-body #bottom_p {
+    padding: 12px 10px 25px 10px;
+  }
+
+  .bureau-body #bottom_p h4 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 2px;
+  }
+
+  .bureau-body #bottom_p a {
+    font-size: 16px;
+    font-weight: bold;
   }
 }
