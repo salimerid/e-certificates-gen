@@ -1,4 +1,4 @@
-/* Bureau Veritas Authentication Portal Styles - Exact end-to-end copy with responsive overflow fixes */
+/* Bureau Veritas Authentication Portal Styles - Exact match for Desktop & Mobile */
 html, body {
   height: 100%;
 }
@@ -6,7 +6,7 @@ html, body {
 body:has(.bureau-body) {
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100%;
 }
 
 .bureau-body * {
@@ -23,12 +23,15 @@ body:has(.bureau-body) {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding-top: 100px; /* Leave space for the fixed header */
+  padding-top: 100px; /* Space for the fixed header */
   position: static;
   min-height: 100vh;
   width: 100%;
 }
 
+/* =========================================================
+   HEADER
+   ========================================================= */
 .bureau-body header {
   background: #00049e;
   color: #fff;
@@ -46,70 +49,54 @@ body:has(.bureau-body) {
 .bureau-body header img {
   width: 70px;
   margin-right: 20px;
+  flex-shrink: 0;
 }
 
 .bureau-body header .qrc-app-logo-text {
-  font-size: 16px;
+  font-size: 18px;
   color: #fff;
+  margin-bottom: 2px;
 }
 
-.bureau-body header h1 {
-  margin: 0;
-  font-size: 20px;
+.bureau-body header .qrc-app-logo-text b {
+  font-weight: bold;
+}
+
+.bureau-body header .qrc-app-logo-text span {
+  font-weight: normal;
 }
 
 .bureau-body header p {
   margin: 2px 0;
-  font-size: 14px;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.35;
 }
 
-.bureau-body header div p {
-  font-size: 11px;
-}
-
+/* =========================================================
+   MAIN CONTAINER & CARD
+   ========================================================= */
 .bureau-body #main_container {
-  padding: 20px 0 70px 0;
+  padding: 20px 0 50px 0;
   position: relative;
   min-height: calc(100vh - 120px);
 }
 
 .bureau-body #row_2 {
-  width: 630px; /* for main container width */
-  max-width: 92%;
+  width: 630px;
+  max-width: 94%;
   margin: 0 auto;
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
 }
 
-.bureau-body #main_container #bottom_p {
-  position: fixed; /* fixed or relative */
-  bottom: -10px;
-  left: 10px;
-  z-index: 999;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-}
-
-.bureau-body #main_container #bottom_p h4 {
-  text-align: center;
-  font-weight: normal;
-  padding: 5px;
-  width: 95%;
-}
-
-.bureau-body #main_container #bottom_p a {
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 .bureau-body #row_2_1 {
-  background-image: url("/content_industry_top.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 50px; /* for gray color shape specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-image: url("/content_industry_top.png");
+  background-color: #cccccc;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
   display: flex;
@@ -118,46 +105,51 @@ body:has(.bureau-body) {
 }
 
 .bureau-body #row_2_1 img {
-  width: 40px; /* for tick mark in gray color shape */
+  width: 40px;
 }
 
 .bureau-body #row_2_2 {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 12px 18px;
+  padding: 15px 22px;
   min-height: 500px;
   height: auto;
   position: relative;
 }
 
-.bureau-body #row_2_2 p {
-  margin-top: auto;
-  font-size: 12px;
-  padding: 24px 8px 10px 8px; /* gives clean separation above disclaimer without overlapping rows */
-  font-weight: bold;
-  position: relative;
-  line-height: 1.4;
-}
-
-/* Each row */
+/* Each field row */
 .bureau-body #row_2_2 div {
   display: grid;
-  grid-template-columns: 210px auto; /* label fixed, value flexible */
+  grid-template-columns: 210px auto;
   align-items: start;
   margin-bottom: 5px;
 }
 
 .bureau-body #row_2_2 div .key {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 14.5px;
+  color: #000;
 }
 
 .bureau-body #row_2_2 div .value {
-  font-size: 13px;
-  word-break: break-word; /* prevent long text overflow */
+  font-size: 13.5px;
+  color: #000;
+  word-break: break-word;
 }
 
+/* Disclaimer text inside card */
+.bureau-body #row_2_2 p {
+  margin-top: auto;
+  font-size: 12.5px;
+  padding: 25px 5px 8px 5px;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* Gray corner triangle below card */
 .bureau-body #row_2_3 {
   display: flex;
   justify-content: flex-end;
@@ -170,125 +162,191 @@ body:has(.bureau-body) {
   display: block;
 }
 
-/* Responsive styles */
+/* Bottom "Visit Bureau Veritas Website" link */
+.bureau-body #bottom_p {
+  text-align: center;
+  padding: 22px 15px 30px 15px;
+  margin: 0 auto;
+  position: static;
+  z-index: 999;
+}
+
+.bureau-body #bottom_p h4 {
+  text-align: center;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  color: #000;
+}
+
+.bureau-body #bottom_p a {
+  color: #000 !important;
+  font-weight: bold;
+  text-decoration: none !important;
+  font-size: 20px;
+  display: inline-block;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE STYLES (Matching Original Mobile Screenshots)
+   ========================================================= */
 @media (max-width: 600px) {
-  .bureau-body #row_2_2 {
-    padding: 12px 14px;
-    min-height: auto;
+  .bureau-body {
+    background-position: 100% top;
+    padding-top: 85px;
   }
-  .bureau-body #row_2_2 div {
-    grid-template-columns: 1fr; /* single column */
-    margin-bottom: 6px;
+
+  .bureau-body header {
+    height: 80px;
+    padding: 10px 14px;
   }
-  .bureau-body #row_2_2 div .key {
-    font-size: 13.5px;
+
+  .bureau-body header img {
+    width: 46px;
+    margin-right: 12px;
+  }
+
+  .bureau-body header .qrc-app-logo-text {
+    font-size: 17.5px;
     margin-bottom: 1px;
   }
-  .bureau-body #row_2_2 div .value {
-    font-size: 13px;
-  }
-  .bureau-body #row_2_2 p {
-    padding: 18px 4px 8px 4px;
-    font-size: 11.5px;
-  }
-}
 
-@media (min-width: 601px) {
-  .bureau-body #row_2_2 div {
-    grid-template-columns: 210px auto;
+  .bureau-body header p {
+    font-size: 11px;
+    line-height: 1.25;
+    margin: 1px 0;
   }
-}
 
-@media only screen and (max-width: 1000px) {
+  .bureau-body #main_container {
+    padding: 12px 0 40px 0;
+  }
+
   .bureau-body #row_2 {
-    width: 92%;
+    width: 94%;
     max-width: 480px;
-    padding: 0;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
   }
-}
 
-@media only screen and (max-width: 850px) {
-  .bureau-body .key {
-    width: 200px;
+  .bureau-body #row_2_1 {
+    height: 48px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
   }
-  .bureau-body #row_2_3 img {
-    width: 180px;
-  }
-  .bureau-body header img {
-    width: 50px;
-  }
-  .bureau-body {
-    background-position: 100% top;
-    padding-top: 70px;
-  }
-  .bureau-body header {
-    height: 80px;
-  }
-  .bureau-body header h1 {
-    margin: 0;
-    font-size: 16px;
-  }
-}
 
-@media only screen and (max-width: 500px) {
-  .bureau-body .key {
+  .bureau-body #row_2_1 img {
+    width: 38px;
+  }
+
+  .bureau-body #row_2_2 {
+    padding: 16px 18px 24px 18px;
+    min-height: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* Stack key and value vertically on mobile */
+  .bureau-body #row_2_2 div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 13px;
+  }
+
+  .bureau-body #row_2_2 div .key {
+    font-size: 17.5px;
+    font-weight: bold;
+    color: #000;
+    line-height: 1.25;
+    margin-bottom: 2px;
     width: 100%;
   }
-  .bureau-body #row_2_3 img {
-    width: 180px;
+
+  .bureau-body #row_2_2 div .value {
+    font-size: 16.5px;
+    font-weight: normal;
+    color: #000;
+    line-height: 1.25;
+    width: 100%;
   }
-  .bureau-body header img {
-    width: 50px;
+
+  /* Right-aligned disclaimer matching Image 1 */
+  .bureau-body #row_2_2 p {
+    margin-top: 24px;
+    margin-bottom: 4px;
+    margin-left: auto;
+    max-width: 88%;
+    font-size: 13.5px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-align: right;
+    padding: 0;
+    color: #000;
   }
-  .bureau-body {
-    background-position: 100% top;
-    padding-top: 70px;
+
+  /* Clean straight bottom matching Image 1 */
+  .bureau-body #row_2_3 {
+    display: none;
   }
-  .bureau-body header {
-    height: 80px;
+
+  /* Centered Visit footer on background floor matching Image 1 */
+  .bureau-body #bottom_p {
+    padding: 18px 10px 30px 10px;
   }
-  .bureau-body header h1 {
-    margin: 0;
-    font-size: 16px;
+
+  .bureau-body #bottom_p h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .bureau-body #bottom_p a {
+    font-size: 20px;
+    font-weight: bold;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .bureau-body {
-    background-position: 100% top;
-    padding-top: 50px;
+    padding-top: 80px;
   }
+
   .bureau-body header {
-    height: 90px;
+    height: 78px;
+    padding: 8px 12px;
   }
-  .bureau-body header h1 {
-    font-size: 14px;
-    margin: 0;
+
+  .bureau-body header img {
+    width: 42px;
+    margin-right: 10px;
   }
+
+  .bureau-body header .qrc-app-logo-text {
+    font-size: 16px;
+  }
+
   .bureau-body header p {
     font-size: 10.5px;
   }
-  .bureau-body header img {
-    width: 50px;
+
+  .bureau-body #row_2_2 div .key {
+    font-size: 16.5px;
   }
-  .bureau-body #main_container {
-    margin-top: 10px;
+
+  .bureau-body #row_2_2 div .value {
+    font-size: 15.5px;
   }
-  .bureau-body #row_2_1 {
-    margin-top: 20px;
+
+  .bureau-body #row_2_2 p {
+    font-size: 13px;
+    max-width: 92%;
   }
-  .bureau-body #row_2_2 div {
-    flex-direction: column;
-    align-items: flex-start;
+
+  .bureau-body #bottom_p h4 {
+    font-size: 17px;
   }
-  .bureau-body .key,
-  .bureau-body .value {
-    width: 100%;
-  }
-  .bureau-body .key {
-    margin-bottom: 1px;
-  }
-  .bureau-body #row_2_3 img {
-    width: 180px;
+
+  .bureau-body #bottom_p a {
+    font-size: 19px;
   }
 }
