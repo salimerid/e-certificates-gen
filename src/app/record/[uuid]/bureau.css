@@ -153,21 +153,10 @@ body:has(.bureau-body) {
   position: relative;
 }
 
-/* Bottom container holding left Visit footer and right angle graphic */
-.bureau-body #row_2_bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-  width: 100%;
-}
-
-/* Gray corner triangle below card on right side */
+/* Gray corner triangle below card */
 .bureau-body #row_2_3 {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
-  flex-shrink: 0;
 }
 
 .bureau-body #row_2_3 img {
@@ -177,13 +166,16 @@ body:has(.bureau-body) {
   display: block;
 }
 
-/* Bottom "Visit Bureau Veritas Website" link on the left side */
+/* Floating fixed at bottom-left in browser */
 .bureau-body #bottom_p {
-  text-align: left;
-  padding: 10px 10px 18px 12px;
-  margin: 0;
-  position: static;
+  position: fixed;
+  bottom: 8px;
+  left: 14px;
   z-index: 999;
+  text-align: left;
+  padding: 4px 8px;
+  margin: 0;
+  pointer-events: auto;
 }
 
 .bureau-body #bottom_p h4 {
@@ -191,17 +183,19 @@ body:has(.bureau-body) {
   font-weight: normal;
   padding: 0;
   margin: 0 0 2px 0;
-  font-size: 16px;
+  font-size: 14.5px;
   color: #000;
+  line-height: 1.25;
 }
 
 .bureau-body #bottom_p a {
   color: #000 !important;
   font-weight: bold;
   text-decoration: none !important;
-  font-size: 16px;
+  font-size: 15.5px;
   display: block;
   text-align: left;
+  line-height: 1.25;
 }
 
 /* =========================================================
@@ -295,46 +289,45 @@ body:has(.bureau-body) {
     max-width: 100%;
   }
 
-  /* Bottom row containing left Visit footer and right angle graphic */
-  .bureau-body #row_2_bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-  }
-
   /* Bottom right triangle on mobile */
   .bureau-body #row_2_3 {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    flex-shrink: 0;
   }
 
   .bureau-body #row_2_3 img {
-    width: 130px;
+    width: 140px;
     height: auto;
     display: block;
   }
 
-  /* Bottom Visit footer on left side */
+  /* Floating fixed at bottom-left on mobile browser */
   .bureau-body #bottom_p {
+    position: fixed;
+    bottom: 8px;
+    left: 12px;
+    z-index: 999;
     text-align: left;
-    padding: 8px 8px 16px 10px;
+    padding: 3px 6px;
     margin: 0;
+    pointer-events: auto;
   }
 
   .bureau-body #bottom_p h4 {
     text-align: left;
-    font-size: 15px;
+    font-size: 13.5px;
     font-weight: normal;
     margin-bottom: 2px;
+    color: #000;
+    line-height: 1.25;
   }
 
   .bureau-body #bottom_p a {
     text-align: left;
-    font-size: 15.5px;
+    font-size: 14.5px;
     font-weight: bold;
+    color: #000 !important;
     display: block;
+    line-height: 1.25;
   }
 }
