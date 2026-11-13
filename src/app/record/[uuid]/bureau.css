@@ -1,4 +1,4 @@
-/* Bureau Veritas Authentication Portal Styles - Exact end-to-end copy */
+/* Bureau Veritas Authentication Portal Styles - Exact end-to-end copy with responsive overflow fixes */
 html, body {
   height: 100%;
 }
@@ -68,13 +68,14 @@ body:has(.bureau-body) {
 }
 
 .bureau-body #main_container {
-  padding: 20px 0;
+  padding: 20px 0 70px 0;
   position: relative;
   min-height: calc(100vh - 120px);
 }
 
 .bureau-body #row_2 {
   width: 630px; /* for main container width */
+  max-width: 92%;
   margin: 0 auto;
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
@@ -124,17 +125,19 @@ body:has(.bureau-body) {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  height: 500px;
+  padding: 12px 18px;
+  min-height: 500px;
+  height: auto;
   position: relative;
 }
 
 .bureau-body #row_2_2 p {
-  position: absolute;
-  bottom: 0;
+  margin-top: auto;
   font-size: 12px;
-  padding: 30px; /* for any further information text setting */
+  padding: 24px 8px 10px 8px; /* gives clean separation above disclaimer without overlapping rows */
   font-weight: bold;
+  position: relative;
+  line-height: 1.4;
 }
 
 /* Each row */
@@ -162,12 +165,31 @@ body:has(.bureau-body) {
 
 .bureau-body #row_2_3 img {
   width: 300px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Responsive styles */
 @media (max-width: 600px) {
+  .bureau-body #row_2_2 {
+    padding: 12px 14px;
+    min-height: auto;
+  }
   .bureau-body #row_2_2 div {
     grid-template-columns: 1fr; /* single column */
+    margin-bottom: 6px;
+  }
+  .bureau-body #row_2_2 div .key {
+    font-size: 13.5px;
+    margin-bottom: 1px;
+  }
+  .bureau-body #row_2_2 div .value {
+    font-size: 13px;
+  }
+  .bureau-body #row_2_2 p {
+    padding: 18px 4px 8px 4px;
+    font-size: 11.5px;
   }
 }
 
@@ -179,8 +201,9 @@ body:has(.bureau-body) {
 
 @media only screen and (max-width: 1000px) {
   .bureau-body #row_2 {
+    width: 92%;
+    max-width: 480px;
     padding: 0;
-    width: 400px;
   }
 }
 
@@ -209,7 +232,7 @@ body:has(.bureau-body) {
 
 @media only screen and (max-width: 500px) {
   .bureau-body .key {
-    width: 200px;
+    width: 100%;
   }
   .bureau-body #row_2_3 img {
     width: 180px;
@@ -263,7 +286,7 @@ body:has(.bureau-body) {
     width: 100%;
   }
   .bureau-body .key {
-    margin-bottom: -2px;
+    margin-bottom: 1px;
   }
   .bureau-body #row_2_3 img {
     width: 180px;
