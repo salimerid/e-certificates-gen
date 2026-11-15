@@ -69,11 +69,11 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
   return (
     <div className="bureau-body">
       <header>
-        <img src="/fingerprint.png" alt="Authenticate" />
+        <img src="/Authenticate your Document_files/fingerprint.png" alt="Fingerprint" />
         <div>
           <div className="qrc-app-logo-text">
             <b>Authenticate </b>
-            <span>your document</span>
+            <span>your document<span></span></span>
           </div>
           <p>Thank you for submitting your document for verification.</p>
           <p>Please find below the answer to your request.</p>
@@ -83,7 +83,7 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
       <div id="main_container">
         <div id="row_2">
           <div id="row_2_1">
-            <img src="/circle_success.png" alt="Success" />
+            <img src="/Authenticate your Document_files/circle_success.png" alt="Success" />
           </div>
 
           <div id="row_2_2">
@@ -163,15 +163,15 @@ export default async function PublicRecordDetailsPage({ params }: PageProps) {
           </div>
 
           <div id="row_2_3">
-            <img src="/content_industry_bottom.png" alt="Bottom Angle" />
+            <img src="/Authenticate your Document_files/content_industry_bottom.png" alt="Bottom Angle" />
           </div>
-        </div>
 
-        <div id="bottom_p">
-          <h4>Visit</h4>
-          <a href="https://group.bureauveritas.com/" target="_blank" rel="noopener noreferrer">
-            Bureau Veritas Website
-          </a>
+          <div id="bottom_p">
+            <h4>Visit</h4>
+            <a href="https://group.bureauveritas.com/" target="_blank" rel="noopener noreferrer">
+              Bureau Veritas Website
+            </a>
+          </div>
         </div>
       </div>
     </div>
