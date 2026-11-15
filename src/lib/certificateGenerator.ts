@@ -66,6 +66,68 @@ function drawBoldText(
   page.pushOperators(popGraphicsState());
 }
 
+function drawWrappedText(
+    page: PDFPage,
+    text: string,
+    options: {
+      x: number;
+      y: number;
+      maxWidth: number;
+      size: number;
+      font: PDFFont;
+      color: Color;
+      lineHeight?: number;
+    }
+): number {
+  const {
+    x,
+    y,
+    maxWidth,
+    size,
+    font,
+    color,
+    lineHeight = size + 5,
+  } = options;
+
+  const words = text.split(' ');
+  const lines: string[] = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    const testLine = currentLine
+        ? `${currentLine} ${word}`
+        : word;
+
+    const width = font.widthOfTextAtSize(testLine, size);
+
+    if (width <= maxWidth) {
+      currentLine = testLine;
+    } else {
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      currentLine = word;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+
+  lines.forEach((line, index) => {
+    page.drawText(line, {
+      x,
+      y: y - index * lineHeight,
+      size,
+      font,
+      color,
+    });
+  });
+
+  return lines.length;
+}
+
 export async function generateCertificatePdf(
   data: CertificateData,
   baseUrl: string = 'http://localhost:3000'
@@ -456,40 +518,106 @@ export async function generateCertificatePdf(
     color: bkCertColor,
   });
 
+  let currentY = 356.25;
+  const lineHeight = 20;
+  const fieldGap = 2;
+
+// TYPE
   const courseType = (data.courseType || 'WELDER 3G 4G').toUpperCase();
-  page2.drawText(`TYPE: ${courseType}`, {
+  const typeLines = drawWrappedText(page2, `TYPE: ${courseType}`, {
     x: rightX,
-    y: 356.25,
+    y: currentY,
+    maxWidth: 320,
     size: 17,
     font: helveticaBold,
     color: black,
+    lineHeight,
   });
 
+  currentY -= typeLines * lineHeight + fieldGap;
+
+// MODEL
   page2.drawText(`MODEL: ${data.model || 'N/A'}`, {
     x: rightX,
-    y: 334.5,
+    y: currentY,
     size: 17,
     font: helveticaBold,
     color: black,
   });
 
+  currentY -= 16 + fieldGap + 3;
+
+// TRAINER
   const trainer = (data.trainer || 'ZEESHAN KHAN').toUpperCase();
-  page2.drawText(`TRAINER: ${trainer}`, {
+
+  const trainerLines = drawWrappedText(page2, `TRAINER: ${trainer}`, {
     x: rightX,
-    y: 312.0,
+    y: currentY,
+    maxWidth: 320,
     size: 17,
     font: helveticaBold,
     color: black,
+    lineHeight,
   });
 
+  currentY -= trainerLines * lineHeight + fieldGap + 5;
+
+// LOCATION
   const loc = (data.location || 'JUBAIL').toUpperCase();
-  page2.drawText(`LOCATION. ${loc}`, {
+
+  drawWrappedText(page2, `LOCATION. ${loc}`, {
     x: rightX,
-    y: 283.5,
+    y: currentY,
+    maxWidth: 320,
     size: 17,
     font: helveticaBold,
     color: black,
+    lineHeight,
   });
+  // const courseType = (data.courseType || 'WELDER 3G 4G').toUpperCase();
+  // // page2.drawText(`TYPE: ${courseType}`, {
+  // //   x: rightX,
+  // //   y: 356.25,
+  // //   size: 17,
+  // //   font: helveticaBold,
+  // //   color: black,
+  // // });
+  //
+  // drawWrappedText(page2, `TYPE: ${courseType}`, {
+  //   x: rightX,
+  //   y: 356.25,
+  //   maxWidth: 320,
+  //   size: 17,
+  //   font: helveticaBold,
+  //   color: black,
+  //   lineHeight: 22,
+  // });
+  //
+  // page2.drawText(`MODEL: ${data.model || 'N/A'}`, {
+  //   x: rightX,
+  //   y: 334.5,
+  //   size: 17,
+  //   font: helveticaBold,
+  //   color: black,
+  // });
+  //
+  // const trainer = (data.trainer || 'ZEESHAN KHAN').toUpperCase();
+  // page2.drawText(`TRAINER: ${trainer}`, {
+  //   x: rightX,
+  //   y: 312.0,
+  //   size: 17,
+  //   font: helveticaBold,
+  //   color: black,
+  // });
+  //
+  // const loc = (data.location || 'JUBAIL').toUpperCase();
+  // page2.drawText(`LOCATION. ${loc}`, {
+  //   x: rightX,
+  //   y: 283.5,
+  //   size: 17,
+  //   font: helveticaBold,
+  //   color: black,
+  // });
 
   // Disclaimer text (10 lines matching generate-certificate.pdf)
   const disclaimer = [
